@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists - VoicePawa | Featured Artists</title>
+    
+    <meta name="description" content="Meet the incredible artists we're proud to work with at VoicePawa.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="logo-styles.css" rel="stylesheet">
+    <link href="shablackstyles.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .hero-title {
+            font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif;
+        }
+        
+        .section-padding {
+            padding: 5rem 2rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding: 8rem 4rem;
+            }
+        }
+        
+        .nav-link.active {
+            color: black;
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: black;
+            border-radius: 50%;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        /* Enhanced Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+        
+        .stagger-animation {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Music Note Animations */
+        .music-note {
+            position: absolute;
+            color: rgba(251, 191, 36, 0.3);
+            animation: musicFloat 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes musicFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(10deg);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-60px) rotate(-5deg);
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translateY(-30px) rotate(15deg);
+                opacity: 0.6;
+            }
+        }
+        
+        /* Pulse Animation for Stats */
+        .pulse-stat {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Gradient Text Animation */
+        .gradient-text {
+            background: linear-gradient(45deg, black, black, #eab308, black, #3b82f6, #8b5cf6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Enhanced Hero Section */
+        .hero-background {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Artist Modal Styles */
+        .artist-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .artist-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .artist-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 2rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .artist-modal.show .artist-modal-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        .platform-btn {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .platform-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .listen-now-btn {
+            background: linear-gradient(135deg, black, black);
+            transition: all 0.3s ease;
+        }
+        
+        .listen-now-btn:hover {
+            background: linear-gradient(135deg, black, #ea580c);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+        
+        .artist-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(251, 191, 36, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+        
+        .artist-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .artist-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem 1.5rem 1.5rem;
+        }
+        
+        .artist-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+        
+        .artist-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .listen-btn {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .listen-btn:hover {
+            background: black;
+            border-color: black;
+            transform: translateY(-2px);
+        }
+        
+        .details-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .details-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .waveform {
+            height: 60px;
+            background: linear-gradient(90deg, 
+                black 0%, black 20%, 
+                black 20%, black 40%,
+                black 40%, black 60%,
+                black 60%, black 80%,
+                black 80%, black 100%);
+            background-size: 20px 100%;
+            animation: waveform 2s ease-in-out infinite;
+            border-radius: 4px;
+            opacity: 0.7;
+        }
+        
+        @keyframes waveform {
+            0%, 100% { background-size: 20px 100%; }
+            50% { background-size: 20px 60%; }
+        }
+        
+        .genre-tag {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: black;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        /* Desktop Optimization */
+        @media (min-width: 1440px) {
+            .max-w-7xl {
+                max-width: 1400px;
+            }
+            
+            .hero-title {
+                font-size: 6rem;
+            }
+            
+            .section-padding {
+                padding: 10rem 6rem;
+            }
+            
+            .artist-card {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (min-width: 1920px) {
+            .max-w-7xl {
+                max-width: 1600px;
+            }
+        }
+        
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .section-padding {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .interactive-card:hover {
+                transform: translateY(-10px) scale(1.01);
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: rotateY(5deg) rotateX(5deg) translateZ(15px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.1;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 1.125rem;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gap-12, .gap-16 {
+                gap: 2rem;
+            }
+            
+            .artist-modal-content {
+                width: 95%;
+                margin: 1rem;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+            
+            .interactive-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.25rem;
+                line-height: 1.2;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 1.875rem;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .px-8, .px-10, .px-12 {
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+            
+            .py-8, .py-10, .py-12 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .mb-16, .mb-20 {
+                margin-bottom: 2rem;
+            }
+            
+            .gap-8, .gap-10 {
+                gap: 1.5rem;
+            }
+            
+            /* Artist cards optimized for mobile */
+            .artist-card {
+                margin-bottom: 1.5rem;
+            }
+            
+            .artist-image {
+                height: 280px;
+            }
+            
+            /* Better touch targets */
+            button, a {
+                min-height: 44px;
+            }
+            
+            /* Modal improvements */
+            .artist-modal-content {
+                width: 98%;
+                margin: 0.5rem;
+                padding: 1.5rem;
+            }
+            
+            .gap-8, .gap-10 {
+                gap: 1rem;
+            }
+            
+            .artist-modal-content {
+                width: 98%;
+                margin: 0.5rem;
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .text-lg {
+                font-size: 1rem;
+            }
+            
+            .px-6 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .py-4 {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+            
+            .artist-modal-content {
+                padding: 1rem;
+            }
+        }
+        
+        /* Ensure all utility classes work */
+        .bg-size-200 {
+            background-size: 200%;
+        }
+        
+        .hover\:bg-pos-100:hover {
+            background-position: 100%;
+        }
+        
+        /* Fix any missing interactive card styles */
+        .interactive-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(251, 191, 36, 0.2), 0 0 0 1px rgba(251, 191, 36, 0.1);
+        }
+        
+        /* Ensure perspective cards work properly */
+        .perspective-card {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .perspective-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .perspective-card:hover .perspective-card-inner {
+            transform: rotateY(15deg) rotateX(10deg) translateZ(30px);
+        }
+        
+        /* Horizontal Scrolling Stats Animation */
+        .stats-marquee-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 2rem 0;
+        }
+        
+        .stats-marquee {
+            display: flex;
+            gap: 4rem;
+            animation: scroll-left 30s linear infinite;
+            width: fit-content;
+        }
+        
+        .stats-marquee:hover {
+            animation-play-state: paused;
+        }
+        
+        .stat-item {
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 200px;
+            padding: 1rem;
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stat-item {
+                min-width: 150px;
+            }
+            
+            .stats-marquee {
+                gap: 2rem;
+                animation: scroll-left 20s linear infinite;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vp-dark': '#ffffff',
+                        'black': 'black',
+                        'vp-secondary': '#1f2937',
+                    },
+                    backgroundSize: {
+                        '200': '200%',
+                    },
+                    backgroundPosition: {
+                        'pos-100': '100%',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center group relative">
+                    <img src="voicepawa-logo.svg" alt="VoicePawa Logo" class="w-16 h-16 sm:w-20 sm:h-20 mr-2 sm:mr-3 transition-transform duration-300 group-hover:scale-110 voicepawa-logo">
+                    <div class="flex flex-col">
+                        <span class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wider voicepawa-script"><span class="text-black voicepawa-text-voice">Voice</span><span class="text-black voicepawa-text-pawa">Pawa</span></span>
+                        <span class="text-xs text-gray-600 uppercase tracking-widest hidden sm:block">Amplify Your Sound</span>
+                    </div>
+                </a>
+
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-center">
+                    <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Home</a>
+                    <a href="about.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">About Us</a>
+                    <a href="artists.html" class="nav-link active px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Artists</a>
+                    <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Services</a>
+                    <a href="contact.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Contact</a>
+                    <a href="upload.html" class="ml-4 px-4 py-2 bg-black hover:bg-black600 text-white text-sm font-semibold rounded-full transition duration-300">Upload Now</a>
+                </div>
+
+                <button id="mobile-menu-button" type="button" class="sm:hidden text-gray-600 hover:text-black focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Home</a>
+                <a href="about.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">About Us</a>
+                <a href="artists.html" class="nav-link active block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Artists</a>
+                <a href="services.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Services</a>
+                <a href="contact.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Contact</a>
+                <a href="upload.html" class="block px-3 py-2 text-base font-medium bg-black text-white hover:bg-black600 rounded-lg mt-2">Upload Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="relative min-h-[80vh] flex items-center hero-background pt-4 md:pt-8">
+            <!-- Animated Particles -->
+            <div class="hero-particles">
+                <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+                <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+                <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+                <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 6s;"></div>
+                <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 8s;"></div>
+                <div class="particle" style="left: 60%; width: 7px; height: 7px; animation-delay: 10s;"></div>
+                <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 12s;"></div>
+                <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 14s;"></div>
+                <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 16s;"></div>
+            </div>
+            
+            <!-- Floating Music Notes -->
+            <div class="music-note" style="top: 20%; left: 15%; animation-delay: 0s;">
+                <i data-lucide="music" class="w-6 h-6"></i>
+            </div>
+            <div class="music-note" style="top: 30%; right: 20%; animation-delay: 2s;">
+                <i data-lucide="headphones" class="w-8 h-8"></i>
+            </div>
+            <div class="music-note" style="bottom: 30%; left: 25%; animation-delay: 4s;">
+                <i data-lucide="mic" class="w-7 h-7"></i>
+            </div>
+            <div class="music-note" style="top: 60%; right: 15%; animation-delay: 6s;">
+                <i data-lucide="radio" class="w-5 h-5"></i>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+                <!-- Enhanced Title -->
+                <div class="mb-2 md:mb-12">
+                    <h1 class="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-black mb-0 perspective-card" style="line-height: 0.9;">
+                        <span class="perspective-card-inner block">
+                            Featured <br class="hidden sm:block">
+                            <span class="text-glitch text-black neon-text" data-text="Artists">Artists</span>
+                        </span>
+                    </h1>
+                    
+                    <!-- Animated Subtitle -->
+                    <div class="relative">
+                        <p class="text-xl sm:text-2xl text-gray-700 font-light tracking-wide image-reveal-mask max-w-4xl mx-auto mb-1 md:mb-8" style="letter-spacing: 0.025em; /* font-weight: 300; */">
+                            Discover the incredible talent shaping the future of music. From Afrobeats to Hip-Hop, meet the artists who are making waves globally.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Stats Section -->
+                <div class="grid grid-cols-2 md:grid-cols-2 gap-2 md:gap-6 mb-2 md:mb-12 perspective-card max-w-3xl mx-auto">
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-black/20 hover:border-black/50 transition-all duration-300 group shadow-md">
+                        <div class="w-12 h-12 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="play" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <div class="text-3xl md:text-4xl font-bold text-black mb-2 neon-text">400K+</div>
+                        <div class="text-gray-700 text-sm font-medium">Total Streams</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-12 h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="globe" class="w-6 h-6 text-black400"></i>
+                        </div>
+                        <div class="text-3xl md:text-4xl font-bold text-black400 mb-2">25+</div>
+                        <div class="text-gray-700 text-sm font-medium">Countries</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-12 h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="award" class="w-6 h-6 text-black400"></i>
+                        </div>
+                        <div class="text-3xl md:text-4xl font-bold text-black400 mb-2">100+</div>
+                        <div class="text-gray-700 text-sm font-medium">Awards Won</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-12 h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="users" class="w-6 h-6 text-black400"></i>
+                        </div>
+                        <div class="text-3xl md:text-4xl font-bold text-black400 mb-2">500+</div>
+                        <div class="text-gray-700 text-sm font-medium">Collaborations</div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced Call to Action -->
+                <div class="space-y-6">
+                    <a href="#artists-grid" class="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-black via-black500 to-black bg-size-200 hover:bg-pos-100 text-white font-bold rounded-full transition-all duration-700 hover:scale-110 shadow-2xl hover:shadow-black/50 perspective-card">
+                        <div class="perspective-card-inner flex items-center space-x-3">
+                            <span>Explore Our Artists</span>
+                            <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Quick Navigation -->
+                    <div class="flex justify-center space-x-4 text-sm">
+                        <button class="text-gray-600 hover:text-black transition-colors duration-300" onclick="filterArtists('all')">All Artists</button>
+                        <button class="text-gray-600 hover:text-black400 transition-colors duration-300" onclick="filterArtists('afrobeats')">Afrobeats</button>
+                        <button class="text-gray-600 hover:text-black400 transition-colors duration-300" onclick="filterArtists('hiphop')">Hip-Hop</button>
+                        <button class="text-gray-600 hover:text-black400 transition-colors duration-300" onclick="filterArtists('reggae')">Reggae</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Enhanced Artists Section -->
+        <section id="artists-grid" class="section-padding relative overflow-hidden bg-white">
+            <!-- Background -->
+            <div class="absolute inset-0 bg-white"></div>
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-20 left-20 w-72 h-72 bg-black rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+                <div class="absolute bottom-20 right-20 w-72 h-72 bg-black500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+                <div class="absolute top-60 right-40 w-72 h-72 bg-black500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 4s;"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Enhanced Header -->
+                <div class="text-center mb-20 fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-black/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+                        <i data-lucide="star" class="w-5 h-5 text-black"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">Our Talent</span>
+                    </div>
+                    
+                    <h2 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black mb-8 perspective-card">
+                        <span class="perspective-card-inner block">
+                            Shaping the Future of <br class="hidden sm:block">
+                            <span class="text-glitch text-black" data-text="Music">Music</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="flex justify-center mb-8">
+                        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-black to-transparent"></div>
+                    </div>
+                    
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+                        Discover the diverse range of talented artists shaping the future of music across genres and continents
+                    </p>
+                </div>
+
+                <!-- Enhanced Artists Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20" id="artists-container">
+                    <!-- Enhanced Artist 1 - Megx Global -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="hiphop" onclick="openArtistModal('megx')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="IMG_1479[2].JPG" 
+                                     alt="Megx Global - Hip-Hop Artist" 
+                                     class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700" 
+                                     style="object-position: center 30%;">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black/30">
+                                    <span class="text-xs font-semibold text-black">Hip-Hop</span>
+                                </div>
+                                
+                                <!-- Status Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="music" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black transition-colors">Megx Global</h3>
+                                <p class="text-gray-600 text-sm mb-4">Hip-Hop Artist</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black">2.8M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">450K</div>
+                                        <div class="text-xs text-gray-600">Followers</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black to-black500 text-white font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('megx')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('megx')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Artist 2 - Mr Bons -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="afrobeats" style="animation-delay: 0.1s;" onclick="openArtistModal('mrbons')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Mr Bons - Afrobeats Artist" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Afrobeats</span>
+                                </div>
+                                
+                                <!-- Trending Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="trending-up" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black500/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black400 transition-colors">Mr Bons</h3>
+                                <p class="text-gray-600 text-sm mb-4">Afrobeats Artist</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">15.2M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">Rising</div>
+                                        <div class="text-xs text-gray-600">Star</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black500 to-black500 text-black font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('mrbons')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black400 font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('mrbons')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Artist 3 - Befranky -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="afrobeats" style="animation-delay: 0.2s;" onclick="openArtistModal('befranky')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Befranky - Afrobeats Artist" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Afrobeats</span>
+                                </div>
+                                
+                                <!-- Rising Star Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="star" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black500/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black400 transition-colors">Befranky</h3>
+                                <p class="text-gray-600 text-sm mb-4">Afrobeats Artist</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">8.5M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">Rising</div>
+                                        <div class="text-xs text-gray-600">Star</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black500 to-black500 text-white font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('befranky')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black400 font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('befranky')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Artist 4 - Sarkodie -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="hiphop" style="animation-delay: 0.3s;" onclick="openArtistModal('sarkodie')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Sarkodie - Hip-Hop Legend" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Hiplife</span>
+                                </div>
+                                
+                                <!-- Crown Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="crown" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- BET Winner Badge -->
+                                <div class="absolute bottom-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">BET Winner</span>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black500/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black400 transition-colors">Sarkodie</h3>
+                                <p class="text-gray-600 text-sm mb-4">African Hip-Hop King</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">12.8M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">King</div>
+                                        <div class="text-xs text-gray-600">Status</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black500 to-black500 text-black font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('sarkodie')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black400 font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('sarkodie')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Artist 5 - Stonebwoy -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="reggae" style="animation-delay: 0.4s;" onclick="openArtistModal('stonebwoy')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-emerald-500 to-black500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Stonebwoy - Reggae Dancehall" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Reggae</span>
+                                </div>
+                                
+                                <!-- Global Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="globe" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- Global Tours Badge -->
+                                <div class="absolute bottom-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Global Tours</span>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black500/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black400 transition-colors">Stonebwoy</h3>
+                                <p class="text-gray-600 text-sm mb-4">Reggae Dancehall Star</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">18.5M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">Global</div>
+                                        <div class="text-xs text-gray-600">Reach</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black500 to-black500 text-black font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('stonebwoy')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black400 font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('stonebwoy')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Artist 6 - Shatta Wale -->
+                    <div class="scale-in perspective-card group cursor-pointer overflow-hidden relative artist-card" data-genre="reggae" style="animation-delay: 0.5s;" onclick="openArtistModal('shatta-wale')">
+                        <div class="perspective-card-inner relative bg-white backdrop-blur-sm rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                            <!-- Glowing Border Effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-gold-500 to-black500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            
+                            <!-- Artist Image -->
+                            <div class="relative h-80 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                     alt="Shatta Wale - Dancehall King" 
+                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                
+                                <!-- Overlay Gradient -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+                                
+                                <!-- Genre Tag -->
+                                <div class="absolute top-4 left-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Dancehall</span>
+                                </div>
+                                
+                                <!-- Star Icon -->
+                                <div class="absolute top-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full p-2 border border-black500/30">
+                                    <i data-lucide="star" class="w-4 h-4 text-black400"></i>
+                                </div>
+                                
+                                <!-- Beyoncé Collab Badge -->
+                                <div class="absolute bottom-4 right-4 bg-black500/20 backdrop-blur-sm rounded-full px-3 py-1 border border-black500/30">
+                                    <span class="text-xs font-semibold text-black400">Beyoncé Collab</span>
+                                </div>
+                                
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div class="w-16 h-16 bg-black500/80 backdrop-blur-sm rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="play" class="w-8 h-8 text-black ml-1"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Artist Info -->
+                            <div class="relative p-6">
+                                <h3 class="text-2xl font-bold text-black mb-2 group-hover:text-black400 transition-colors">Shatta Wale</h3>
+                                <p class="text-gray-600 text-sm mb-4">Dancehall King</p>
+                                
+                                <!-- Stats -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">45.2M</div>
+                                        <div class="text-xs text-gray-600">Streams</div>
+                                    </div>
+                                    <div class="bg-gray-100/50 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-black400">King</div>
+                                        <div class="text-xs text-gray-600">Status</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Action Buttons -->
+                                <div class="space-y-3">
+                                    <button class="w-full bg-gradient-to-r from-black500 to-black500 text-white font-semibold py-3 rounded-lg hover:scale-105 transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('shatta-wale')">
+                                        Listen Now
+                                    </button>
+                                    <button class="w-full border border-gray-600 text-gray-700 hover:text-black hover:border-black400 font-medium py-2 rounded-lg transition-all duration-300" onclick="event.stopPropagation(); openArtistModal('shatta-wale')">
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced CTA Section -->
+                <div class="text-center mb-20">
+                    <div class="bg-white backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
+                        <h3 class="text-3xl font-bold text-black mb-4">Ready to Join Our Roster?</h3>
+                        <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
+                            Take the next step in your music career. Join hundreds of artists who trust VoicePawa to amplify their sound globally.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="upload.html" class="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-black to-black500 text-white font-bold rounded-full hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-black/50">
+                                <span>Upload Your Music</span>
+                                <i data-lucide="upload" class="w-5 h-5"></i>
+                            </a>
+                            <a href="services.html" class="inline-flex items-center space-x-3 px-8 py-4 border-2 border-gray-600 text-gray-700 hover:text-black hover:border-black font-semibold rounded-full transition-all duration-300">
+                                <span>View Services</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Success & Industry Insights Section -->
+                <div class="relative mb-16">
+                    <!-- Background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black500/5 to-black500/10 rounded-3xl blur-xl"></div>
+                    
+                    <!-- Content -->
+                    <div class="relative bg-white backdrop-blur-sm p-8 lg:p-12 rounded-3xl border border-gray-200 shadow-lg overflow-hidden">
+                        <!-- Header -->
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl md:text-4xl font-bold text-black mb-4">
+                                Our Artists' Success & <span class="gradient-text">Industry Insights</span>
+                            </h3>
+                            <p class="text-gray-700 max-w-2xl mx-auto">
+                                Real numbers that showcase the impact and reach of our talented roster across the global music industry
+                            </p>
+                        </div>
+                        
+                        <!-- Horizontal Scrolling Stats -->
+                        <div class="stats-marquee-container">
+                            <div class="stats-marquee">
+                                <!-- First set -->
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="play" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black mb-2">400K+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Total Streams</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="users" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">100+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Collaborations</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="users" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black mb-2">35+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Artists Managed</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="globe" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">190+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Countries Reached</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="music" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">300+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Tracks Released</div>
+                                </div>
+                                
+                                <!-- Duplicate for seamless loop -->
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="play" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black mb-2">400K+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Total Streams</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="users" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">100+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Collaborations</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="users" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black mb-2">35+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Artists Managed</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="globe" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">190+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Countries Reached</div>
+                                </div>
+                                
+                                <div class="stat-item">
+                                    <div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i data-lucide="music" class="w-8 h-8 text-black400"></i>
+                                    </div>
+                                    <div class="text-4xl font-bold text-black400 mb-2">300+</div>
+                                    <div class="text-gray-600 text-sm font-medium">Tracks Released</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <div class="fade-in-up mb-8">
+                        <h3 class="text-3xl md:text-4xl font-bold text-black mb-4">
+                            Ready to Join the <span class="text-black">VoicePawa Family?</span>
+                        </h3>
+                        <p class="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
+                            Take the first step towards global recognition. Upload your music and let us help you reach audiences worldwide.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="upload.html" class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-black to-black600 hover:from-black600 hover:to-black text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 space-x-2 shadow-lg">
+                            <span>Start Your Journey</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        
+                        <a href="services.html" class="inline-flex items-center px-6 py-3 border-2 border-white text-black hover:bg-white hover:text-black font-semibold rounded-full transition-all duration-300 space-x-2">
+                            <span>Explore Services</span>
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                    
+                    <p class="mt-6 text-sm text-gray-600">
+                        Join over 150+ artists who trust VoicePawa with their music distribution
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Artist Detail Modal -->
+    <div id="artist-modal" class="artist-modal">
+        <div class="artist-modal-content">
+            <!-- Modal content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <footer class="bg-gradient-to-r from-white to-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold uppercase tracking-wider"><span class="text-black">VOICE</span><span class="text-black">PAWA</span></h3>
+                    <p class="text-gray-600 text-sm leading-relaxed max-w-sm">
+                        Empowering the next generation of global artists through strategic management, premium production, and worldwide distribution.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="twitter" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://instagram.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="instagram" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://facebook.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="facebook" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Quick Links</h4>
+                    <nav class="space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Home</a>
+                        <a href="about.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">About Us</a>
+                        <a href="artists.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Artists</a>
+                        <a href="services.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Services</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="tel:0555984307" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 mr-3"></i>
+                            0555984307
+                        </a>
+                        <a href="mailto:voicepawa@gmail.com" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 mr-3"></i>
+                            voicepawa@gmail.com
+                        </a>
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <i data-lucide="globe" class="w-4 h-4 mr-3"></i>
+                            Global Operations
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">
+                    &copy; <span id="current-year"></span> VoicePawa. All rights reserved. | Follow us: @voicepawa
+                </p>
+                <div class="flex space-x-6 text-xs text-gray-500">
+                    <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-black transition-colors">Terms of Service</a>
+                    <a href="contact.html" class="hover:text-black transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Enhanced Animations
+        gsap.utils.toArray('.fade-in-up').forEach(element => {
+            gsap.fromTo(element,
+                { y: 60, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-left').forEach(element => {
+            gsap.fromTo(element,
+                { x: -60, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-right').forEach(element => {
+            gsap.fromTo(element,
+                { x: 60, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.scale-in').forEach(element => {
+            gsap.fromTo(element,
+                { scale: 0.8, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.stagger-animation').forEach((element, index) => {
+            gsap.fromTo(element,
+                { y: 30, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // Counter Animation
+        gsap.utils.toArray('.counter').forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            gsap.fromTo(counter,
+                { textContent: 0 },
+                {
+                    textContent: target,
+                    duration: 2,
+                    ease: 'power2.out',
+                    snap: { textContent: target > 10 ? 1 : 0.1 },
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    },
+                    onUpdate: function() {
+                        const value = parseFloat(this.targets()[0].textContent);
+                        if (target < 10) {
+                            counter.textContent = value.toFixed(1);
+                        } else {
+                            counter.textContent = Math.round(value);
+                        }
+                    }
+                }
+            );
+        });
+
+        // Parallax effect for hero particles
+        gsap.utils.toArray('.particle').forEach(particle => {
+            gsap.to(particle, {
+                y: -100,
+                duration: 'random(10, 20)',
+                repeat: -1,
+                ease: 'none',
+                delay: 'random(0, 5)'
+            });
+        });
+
+        // Enhanced hover animations for artist cards
+        gsap.utils.toArray('.artist-card').forEach(card => {
+            const overlay = card.querySelector('.artist-overlay');
+            const image = card.querySelector('.artist-image');
+            
+            card.addEventListener('mouseenter', () => {
+                gsap.to(image, { scale: 1.1, duration: 0.4, ease: 'power2.out' });
+                gsap.to(overlay, { opacity: 1, duration: 0.3 });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(image, { scale: 1, duration: 0.4, ease: 'power2.out' });
+            });
+        });
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Artist Filter Functionality
+        function filterArtists(genre) {
+            try {
+                const artistCards = document.querySelectorAll('.artist-card');
+                const filterButtons = document.querySelectorAll('[onclick*="filterArtists"]');
+                
+                console.log('Filtering artists by genre:', genre);
+                console.log('Found artist cards:', artistCards.length);
+            
+            // Update button states
+            filterButtons.forEach(btn => {
+                btn.classList.remove('text-black', 'text-black400', 'text-black400', 'text-black400');
+                btn.classList.add('text-gray-600');
+            });
+            
+            // Highlight active button
+            const activeButton = document.querySelector(`[onclick="filterArtists('${genre}')"]`);
+            if (activeButton) {
+                activeButton.classList.remove('text-gray-600');
+                if (genre === 'all') activeButton.classList.add('text-black');
+                else if (genre === 'afrobeats') activeButton.classList.add('text-black400');
+                else if (genre === 'hiphop') activeButton.classList.add('text-black400');
+                else if (genre === 'reggae') activeButton.classList.add('text-black400');
+            }
+            
+            // Filter cards with animation
+            artistCards.forEach((card, index) => {
+                const cardGenre = card.dataset.genre;
+                const shouldShow = genre === 'all' || cardGenre === genre;
+                
+                if (shouldShow) {
+                    gsap.to(card, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        delay: index * 0.1,
+                        ease: 'back.out(1.7)'
+                    });
+                    card.style.display = 'block';
+                } else {
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        ease: 'power2.in',
+                        onComplete: () => {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
+            } catch (error) {
+                console.error('Error filtering artists:', error);
+            }
+        }
+
+        // Artist data
+        const artistsData = {
+            'boj': {
+                name: 'BOJ',
+                genre: 'Afrobeats/Alternative',
+                bio: 'BOJ is a Nigerian-British singer, songwriter, and record producer known for his unique blend of Afrobeats, alternative R&B, and experimental sounds. He\'s a founding member of DRB LasGidi and has established himself as one of the most innovative artists in the Afrobeats scene.',
+                location: 'Lagos, Nigeria / London, UK',
+                yearsActive: '2012 - Present',
+                topTracks: [
+                    { name: 'Awolowo (Remix)', streams: '2.8M', duration: '3:45' },
+                    { name: 'Your Love (Mogbe)', streams: '1.9M', duration: '4:12' },
+                    { name: 'Emotions', streams: '1.5M', duration: '3:28' }
+                ],
+                achievements: [
+                    'Headies Award for Best Alternative Song',
+                    'Featured on major Afrobeats playlists globally',
+                    'Collaborated with Wizkid, Davido, and other A-list artists'
+                ],
+                socialMedia: {
+                    instagram: '@boj_alaba',
+                    twitter: '@BOJAlaba',
+                    youtube: 'BOJOfficial'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/boj',
+                    apple: 'https://music.apple.com/artist/boj',
+                    youtube: 'https://music.youtube.com/channel/boj',
+                    audiomack: 'https://audiomack.com/boj'
+                }
+            },
+            'camidoh': {
+                name: 'Camidoh',
+                genre: 'Afrobeats/Afropop',
+                bio: 'Camidoh is a Ghanaian singer, songwriter, and performer who has taken the Afrobeats world by storm. Known for his melodic vocals and catchy hooks, he\'s become one of Ghana\'s most promising young talents with international recognition.',
+                location: 'Accra, Ghana',
+                yearsActive: '2018 - Present',
+                topTracks: [
+                    { name: 'Sugarcane (Remix)', streams: '15.2M', duration: '3:52' },
+                    { name: 'Kaba', streams: '4.1M', duration: '3:18' },
+                    { name: 'Adoley', streams: '2.7M', duration: '4:05' }
+                ],
+                achievements: [
+                    'VGMA Afrobeats/Afropop Song of the Year',
+                    'Sugarcane Remix went viral on TikTok',
+                    'Performed at major African music festivals'
+                ],
+                socialMedia: {
+                    instagram: '@camidoh_',
+                    twitter: '@camidoh_',
+                    tiktok: '@camidoh_'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/camidoh',
+                    apple: 'https://music.apple.com/artist/camidoh',
+                    youtube: 'https://music.youtube.com/channel/camidoh',
+                    boomplay: 'https://boomplay.com/artists/camidoh'
+                }
+            },
+            'dblack': {
+                name: 'DBlack',
+                genre: 'Hip-Hop/Afrobeats',
+                bio: 'DBlack is a Ghanaian rapper, singer, and entrepreneur who has been a dominant force in West African hip-hop for over a decade. Known for his versatility and business acumen, he\'s also the CEO of Black Avenue Muzik.',
+                location: 'Accra, Ghana',
+                yearsActive: '2010 - Present',
+                topTracks: [
+                    { name: 'Vera', streams: '8.5M', duration: '4:22' },
+                    { name: 'Enjoyment', streams: '5.3M', duration: '3:45' },
+                    { name: 'Pepper', streams: '4.8M', duration: '3:58' }
+                ],
+                achievements: [
+                    'Multiple VGMA Hip-Hop Song of the Year awards',
+                    'Successful record label owner (Black Avenue Muzik)',
+                    'Collaborated with international artists'
+                ],
+                socialMedia: {
+                    instagram: '@dblackgh',
+                    twitter: '@dblackgh',
+                    youtube: 'DBlackGhOfficial'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/dblack',
+                    apple: 'https://music.apple.com/artist/dblack',
+                    youtube: 'https://music.youtube.com/channel/dblack',
+                    audiomack: 'https://audiomack.com/dblack'
+                }
+            },
+            'sarkodie': {
+                name: 'Sarkodie',
+                genre: 'Hip-Hop/Hiplife',
+                bio: 'Sarkodie is a Ghanaian rapper and entrepreneur, widely regarded as one of Africa\'s greatest rappers. With numerous awards and international recognition, he has put Ghanaian hip-hop on the global map and continues to inspire a new generation of African artists.',
+                location: 'Tema, Ghana',
+                yearsActive: '2009 - Present',
+                topTracks: [
+                    { name: 'Adonai (feat. Castro)', streams: '12.8M', duration: '4:15' },
+                    { name: 'Can\'t Let You Go', streams: '8.9M', duration: '3:42' },
+                    { name: 'Lucky', streams: '7.2M', duration: '4:08' }
+                ],
+                achievements: [
+                    'BET Award for Best International Flow',
+                    'Multiple VGMA Artiste of the Year awards',
+                    'First Ghanaian to win BET Award',
+                    'Over 100 million streams globally'
+                ],
+                socialMedia: {
+                    instagram: '@sarkodie',
+                    twitter: '@sarkodie',
+                    youtube: 'SarkodieTV'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/sarkodie',
+                    apple: 'https://music.apple.com/artist/sarkodie',
+                    youtube: 'https://music.youtube.com/channel/sarkodie',
+                    boomplay: 'https://boomplay.com/artists/sarkodie'
+                }
+            },
+            'stonebwoy': {
+                name: 'Stonebwoy',
+                genre: 'Reggae/Dancehall/Afrobeats',
+                bio: 'Stonebwoy is a Ghanaian reggae and dancehall artist who has become one of Africa\'s biggest music exports. Known for his energetic performances and conscious lyrics, he has won multiple international awards and collaborated with global superstars.',
+                location: 'Ashaiman, Ghana',
+                yearsActive: '2012 - Present',
+                topTracks: [
+                    { name: 'Putuu (Pray)', streams: '18.5M', duration: '3:38' },
+                    { name: 'Activate', streams: '12.1M', duration: '4:02' },
+                    { name: 'Everlasting', streams: '9.7M', duration: '3:55' }
+                ],
+                achievements: [
+                    'VGMA Artiste of the Year (multiple times)',
+                    'Collaborated with Sean Paul, Trey Songz',
+                    'Performed at major international festivals',
+                    'IRAWMA Outstanding Song Award'
+                ],
+                socialMedia: {
+                    instagram: '@stonebwoy',
+                    twitter: '@stonebwoy',
+                    youtube: 'StonebwoyOfficial'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/stonebwoy',
+                    apple: 'https://music.apple.com/artist/stonebwoy',
+                    youtube: 'https://music.youtube.com/channel/stonebwoy',
+                    boomplay: 'https://boomplay.com/artists/stonebwoy'
+                }
+            },
+            'shatta-wale': {
+                name: 'Shatta Wale',
+                genre: 'Dancehall/Afrobeats',
+                bio: 'Shatta Wale is a Ghanaian reggae-dancehall artist known for his controversial personality and chart-topping hits. He\'s one of the most influential artists in Ghana and has collaborated with international stars including Beyoncé on "Already" from The Lion King album.',
+                location: 'Accra, Ghana',
+                yearsActive: '2013 - Present',
+                topTracks: [
+                    { name: 'Already (with Beyoncé)', streams: '45.2M', duration: '3:22' },
+                    { name: 'Melissa', streams: '22.8M', duration: '4:18' },
+                    { name: 'My Level', streams: '15.6M', duration: '3:45' }
+                ],
+                achievements: [
+                    'Collaborated with Beyoncé on The Lion King album',
+                    'VGMA Artiste of the Year',
+                    'Most streamed Ghanaian artist on Spotify',
+                    'Performed at major international venues'
+                ],
+                socialMedia: {
+                    instagram: '@shattawalenima',
+                    twitter: '@shattawalenima',
+                    youtube: 'ShattaWaleGH'
+                },
+                platforms: {
+                    spotify: 'https://open.spotify.com/artist/shattawale',
+                    apple: 'https://music.apple.com/artist/shattawale',
+                    youtube: 'https://music.youtube.com/channel/shattawale',
+                    boomplay: 'https://boomplay.com/artists/shattawale'
+                }
+            }
+        };
+
+        // Open artist modal
+        function openArtistModal(artistId) {
+            try {
+                const artist = artistsData[artistId];
+                if (!artist) {
+                    console.error('Artist not found:', artistId);
+                    return;
+                }
+
+            const modal = document.getElementById('artist-modal');
+            const modalContent = modal.querySelector('.artist-modal-content');
+
+            modalContent.innerHTML = `
+                <div class="relative">
+                    <!-- Close button -->
+                    <button onclick="closeArtistModal()" class="absolute top-6 right-6 z-10 w-10 h-10 bg-white/50 hover:bg-white/70 rounded-full flex items-center justify-center transition-colors">
+                        <i data-lucide="x" class="w-5 h-5 text-black"></i>
+                    </button>
+
+                    <!-- Header -->
+                    <div class="bg-gradient-to-r from-black/20 to-black500/20 p-8 rounded-t-2xl">
+                        <div class="flex flex-col md:flex-row items-start md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                            <div class="w-24 h-24 bg-gradient-to-br from-black/30 to-black500/30 rounded-2xl flex items-center justify-center">
+                                <i data-lucide="user" class="w-12 h-12 text-black"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h2 class="text-3xl md:text-4xl font-bold text-black mb-2">${artist.name}</h2>
+                                <p class="text-xl text-gray-700 mb-2">${artist.genre}</p>
+                                <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                                    <span><i data-lucide="map-pin" class="w-4 h-4 inline mr-1"></i>${artist.location}</span>
+                                    <span><i data-lucide="calendar" class="w-4 h-4 inline mr-1"></i>${artist.yearsActive}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="p-8">
+                        <!-- Bio -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-black mb-4">About</h3>
+                            <p class="text-gray-700 leading-relaxed">${artist.bio}</p>
+                        </div>
+
+                        <!-- Top Tracks -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-black mb-4">Top Tracks</h3>
+                            <div class="space-y-3">
+                                ${artist.topTracks.map((track, index) => `
+                                    <div class="flex items-center justify-between p-4 bg-gray-100/50 rounded-xl hover:bg-gray-100/70 transition-colors">
+                                        <div class="flex items-center space-x-4">
+                                            <div class="w-8 h-8 bg-black/20 rounded-lg flex items-center justify-center">
+                                                <span class="text-sm font-bold text-black">${index + 1}</span>
+                                            </div>
+                                            <div>
+                                                <p class="text-black font-medium">${track.name}</p>
+                                                <p class="text-sm text-gray-600">${track.streams} streams</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center space-x-3">
+                                            <span class="text-sm text-gray-600">${track.duration}</span>
+                                            <button class="w-8 h-8 bg-black hover:bg-black600 rounded-full flex items-center justify-center transition-colors">
+                                                <i data-lucide="play" class="w-4 h-4 text-black"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-black mb-4">Achievements</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${artist.achievements.map(achievement => `
+                                    <div class="flex items-start space-x-3 p-4 bg-gradient-to-r from-black/10 to-transparent rounded-xl border border-black/20">
+                                        <i data-lucide="award" class="w-5 h-5 text-black mt-0.5"></i>
+                                        <p class="text-gray-700 text-sm">${achievement}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Streaming Platforms -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-black mb-6">Listen on Your Favorite Platform</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                ${Object.entries(artist.platforms).map(([platform, url]) => {
+                                    const platformInfo = getPlatformInfo(platform);
+                                    return `
+                                        <a href="${url}" target="_blank" rel="noopener noreferrer" 
+                                           class="platform-btn flex flex-col items-center p-6 bg-gradient-to-br ${platformInfo.gradient} rounded-xl hover:scale-105 transition-all duration-300 group">
+                                            <div class="w-12 h-12 ${platformInfo.bg} rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                                <i data-lucide="${platformInfo.icon}" class="w-6 h-6 ${platformInfo.iconColor}"></i>
+                                            </div>
+                                            <span class="text-black font-medium text-sm">${platformInfo.name}</span>
+                                        </a>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="mb-6">
+                            <h3 class="text-xl font-bold text-black mb-4">Follow ${artist.name}</h3>
+                            <div class="flex flex-wrap gap-4">
+                                ${Object.entries(artist.socialMedia).map(([platform, handle]) => `
+                                    <a href="#" class="flex items-center space-x-2 px-4 py-2 bg-gray-100/50 hover:bg-gray-100/70 rounded-xl transition-colors">
+                                        <i data-lucide="${getSocialIcon(platform)}" class="w-4 h-4 text-gray-600"></i>
+                                        <span class="text-gray-700 text-sm">${handle}</span>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Waveform visualization -->
+                        <div class="mb-6">
+                            <div class="waveform rounded-lg"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Reinitialize Lucide icons for the modal content
+            lucide.createIcons();
+
+                // Show modal with animation
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+                
+                // Re-initialize Lucide icons for the modal content
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Error opening artist modal:', error);
+            }
+        }
+
+        // Close artist modal
+        function closeArtistModal() {
+            try {
+                const modal = document.getElementById('artist-modal');
+                if (modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            } catch (error) {
+                console.error('Error closing artist modal:', error);
+            }
+        }
+
+        // Get platform information
+        function getPlatformInfo(platform) {
+            const platforms = {
+                spotify: {
+                    name: 'Spotify',
+                    icon: 'music',
+                    gradient: 'from-black500/20 to-black600/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                apple: {
+                    name: 'Apple Music',
+                    icon: 'music-2',
+                    gradient: 'from-gray-500/20 to-gray-600/20',
+                    bg: 'bg-gray-500/20',
+                    iconColor: 'text-gray-600'
+                },
+                youtube: {
+                    name: 'YouTube Music',
+                    icon: 'play-circle',
+                    gradient: 'from-black500/20 to-black600/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                soundcloud: {
+                    name: 'SoundCloud',
+                    icon: 'cloud',
+                    gradient: 'from-black500/20 to-black600/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                bandcamp: {
+                    name: 'Bandcamp',
+                    icon: 'disc',
+                    gradient: 'from-black500/20 to-black600/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                deezer: {
+                    name: 'Deezer',
+                    icon: 'headphones',
+                    gradient: 'from-black500/20 to-black600/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                tidal: {
+                    name: 'Tidal',
+                    icon: 'waves',
+                    gradient: 'from-black500/20 to-teal-500/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                },
+                beatstars: {
+                    name: 'BeatStars',
+                    icon: 'zap',
+                    gradient: 'from-black500/20 to-black500/20',
+                    bg: 'bg-black500/20',
+                    iconColor: 'text-black400'
+                }
+            };
+            return platforms[platform] || platforms.spotify;
+        }
+
+        // Get social media icon
+        function getSocialIcon(platform) {
+            const icons = {
+                instagram: 'instagram',
+                twitter: 'twitter',
+                youtube: 'youtube',
+                tiktok: 'music',
+                facebook: 'facebook'
+            };
+            return icons[platform] || 'link';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('artist-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeArtistModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeArtistModal();
+            }
+        });
+
+        // Make functions globally available
+        window.openArtistModal = openArtistModal;
+        window.closeArtistModal = closeArtistModal;
+    </script>
+</body>
+</html>
+
+
+

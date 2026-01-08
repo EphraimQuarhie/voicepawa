@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - VoicePawa | The Power Behind the Voice</title>
+    
+    <meta name="description" content="Learn about VoicePawa's mission to empower artists with 100% rights retention and global music distribution.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="logo-styles.css" rel="stylesheet">
+    <link href="shablackstyles.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .hero-title {
+            font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif;
+        }
+        
+        .section-padding {
+            padding: 5rem 2rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding: 8rem 4rem;
+            }
+        }
+        
+        .nav-link.active {
+            color: black;
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: black;
+            border-radius: 50%;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+        
+        /* Enhanced Image Animations */
+        .image-float {
+            animation: image-float 6s ease-in-out infinite;
+        }
+        
+        @keyframes image-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        .image-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(251, 191, 36, 0.3), transparent);
+            animation: rotate-glow 4s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate-glow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .image-reveal-mask {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-reveal-mask::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.6), transparent);
+            animation: reveal-sweep 3s ease-in-out infinite;
+        }
+        
+        @keyframes reveal-sweep {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        /* 3D Perspective Cards */
+        .perspective-card {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        .perspective-card-inner {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .perspective-card:hover .perspective-card-inner {
+            transform: rotateY(15deg) rotateX(10deg) translateZ(30px);
+        }
+        
+        /* Morphing Background */
+        .morph-bg {
+            background: linear-gradient(45deg, black, black, #ea580c, black);
+            background-size: 400% 400%;
+            animation: morph-bg-shift 8s ease infinite;
+        }
+        
+        @keyframes morph-bg-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+
+        
+        /* Particle Background */
+        .particle-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particle-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(251, 191, 36, 0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(251, 191, 36, 0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: particle-float 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-10px) translateX(10px); }
+            66% { transform: translateY(5px) translateX(-5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+        
+        /* Neon Text Effect */
+        .neon-text {
+            text-shadow: 
+                0 0 5px rgba(251, 191, 36, 0.5),
+                0 0 10px rgba(251, 191, 36, 0.5),
+                0 0 15px rgba(251, 191, 36, 0.5),
+                0 0 20px rgba(251, 191, 36, 0.5);
+            animation: neon-flicker 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neon-flicker {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 5px rgba(251, 191, 36, 0.5),
+                    0 0 10px rgba(251, 191, 36, 0.5),
+                    0 0 15px rgba(251, 191, 36, 0.5),
+                    0 0 20px rgba(251, 191, 36, 0.5);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 2px rgba(251, 191, 36, 0.3),
+                    0 0 5px rgba(251, 191, 36, 0.3),
+                    0 0 8px rgba(251, 191, 36, 0.3),
+                    0 0 12px rgba(251, 191, 36, 0.3);
+            }
+        }
+        
+        /* Interactive Card Effects */
+        .interactive-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(251, 191, 36, 0.2), 0 0 0 1px rgba(251, 191, 36, 0.1);
+        }
+        
+        /* Scale Animation */
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .section-padding {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: rotateY(5deg) rotateX(5deg) translateZ(15px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.1;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 1.125rem;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .gap-12, .gap-16 {
+                gap: 2rem;
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 2rem 0.75rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 2rem;
+            }
+            
+            .px-8, .px-10, .px-12 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+            
+            .py-8, .py-10, .py-12 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .mb-16, .mb-20 {
+                margin-bottom: 2rem;
+            }
+            
+            .gap-8, .gap-10 {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .text-lg {
+                font-size: 1rem;
+            }
+            
+            .px-6 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .py-4 {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+        }
+        
+        /* Flip Card Styles for Mobile */
+        .flip-card-container {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flip-card {
+            position: relative;
+            width: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card-container.flipped .flip-card {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front,
+        .flip-card-back {
+            width: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+        }
+        
+        /* Custom scrollbar for flip card content */
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: black;
+            border-radius: 10px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #16a34a;
+        }
+        
+        /* Stats Marquee - Horizontal Scrolling Animation */
+        .stats-marquee-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .stats-marquee {
+            display: flex;
+            gap: 4rem;
+            animation: marquee-scroll 30s linear infinite;
+            width: max-content;
+        }
+
+        .stats-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        .stat-item {
+            flex-shrink: 0;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        @keyframes marquee-scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .stats-marquee {
+                gap: 3rem;
+                animation-duration: 25s;
+            }
+            
+            .stat-item {
+                min-width: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-marquee {
+                gap: 2rem;
+                animation-duration: 20s;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vp-dark': '#ffffff',
+                        'black': 'black',
+                        'vp-secondary': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Header / Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center group relative">
+                    <img src="voicepawa-logo.svg" alt="VoicePawa Logo" class="w-16 h-16 sm:w-20 sm:h-20 mr-2 sm:mr-3 transition-transform duration-300 group-hover:scale-110 voicepawa-logo">
+                    <div class="flex flex-col">
+                        <span class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wider voicepawa-script"><span class="text-black voicepawa-text-voice">Voice</span><span class="text-black voicepawa-text-pawa">Pawa</span></span>
+                        <span class="text-xs text-gray-600 uppercase tracking-widest hidden sm:block">Amplify Your Sound</span>
+                    </div>
+                </a>
+
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-center">
+                    <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Home</a>
+                    <a href="about.html" class="nav-link active px-3 py-2 text-sm font-medium hover:text-black transition duration-300">About Us</a>
+                    <a href="artists.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Artists</a>
+                    <a href="services.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Services</a>
+                    <a href="contact.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Contact</a>
+                    <a href="upload.html" class="ml-4 px-4 py-2 bg-black hover:bg-black600 text-white text-sm font-semibold rounded-full transition duration-300">Upload Now</a>
+                </div>
+
+                <button id="mobile-menu-button" type="button" class="sm:hidden text-gray-600 hover:text-black focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Home</a>
+                <a href="about.html" class="nav-link active block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">About Us</a>
+                <a href="artists.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Artists</a>
+                <a href="services.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Services</a>
+                <a href="contact.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Contact</a>
+                <a href="upload.html" class="block px-3 py-2 text-base font-medium bg-black text-black hover:bg-black600 rounded-lg mt-2">Upload Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="relative min-h-[80vh] flex items-center overflow-hidden particle-bg bg-white">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-white"></div>
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-20 left-20 w-72 h-72 bg-black rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+                <div class="absolute bottom-20 right-20 w-72 h-72 bg-black500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-20 left-10 image-float opacity-30">
+                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="music" class="w-8 h-8 text-black"></i>
+                    </div>
+                </div>
+                <div class="absolute top-40 right-20 image-float opacity-20" style="animation-delay: 2s;">
+                    <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="headphones" class="w-6 h-6 text-black"></i>
+                    </div>
+                </div>
+                <div class="absolute bottom-40 left-20 image-float opacity-25" style="animation-delay: 4s;">
+                    <div class="w-14 h-14 bg-black/15 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="mic" class="w-7 h-7 text-black"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full">
+                <!-- Enhanced Title -->
+                <div class="mb-8">
+                    <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-black mb-6 perspective-card">
+                        <span class="perspective-card-inner block">
+                            The Power Behind <br class="hidden sm:block">
+                            <span class="text-black neon-text">the Voice</span>
+                        </span>
+                    </h1>
+                    
+                    <!-- Animated Subtitle -->
+                    <div class="relative">
+                        <p class="text-xl sm:text-2xl text-gray-700 font-light tracking-wide image-reveal-mask max-w-4xl mx-auto">
+                            Empowering artists to reach global audiences while keeping 100% of their rights.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Stats Preview -->
+                <div class="grid grid-cols-3 gap-6 max-w-2xl mx-auto mb-8 perspective-card">
+                    <div class="perspective-card-inner text-center">
+                        <div class="text-3xl sm:text-4xl font-bold text-black mb-2">35+</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wider">Artists Managed</div>
+                    </div>
+                    <div class="perspective-card-inner text-center">
+                        <div class="text-3xl sm:text-4xl font-bold text-black mb-2">190+</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wider">Countries Reached</div>
+                    </div>
+                    <div class="perspective-card-inner text-center">
+                        <div class="text-3xl sm:text-4xl font-bold text-black mb-2">300+</div>
+                        <div class="text-sm text-gray-600 uppercase tracking-wider">Tracks Released</div>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#mission" class="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-black to-black500 text-white font-bold rounded-full hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-black/50">
+                    <span>Discover Our Mission</span>
+                    <i data-lucide="arrow-down" class="w-5 h-5 animate-bounce"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Enhanced About Content -->
+        <section id="mission" class="section-padding relative overflow-hidden bg-white">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 bg-white"></div>
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Enhanced Header -->
+                <div class="text-center mb-20 fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-black/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+                        <i data-lucide="target" class="w-5 h-5 text-black"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">Our Mission</span>
+                    </div>
+                    
+                    <h3 class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black mb-8 perspective-card">
+                        <span class="perspective-card-inner block">
+                            Empowering Artists <br class="hidden sm:block">
+                            <span class="text-black">Worldwide</span>
+                        </span>
+                    </h3>
+                    
+                    <div class="flex justify-center mb-8">
+                        <div class="w-32 h-1 bg-gradient-to-r from-transparent via-black to-transparent"></div>
+                    </div>
+                    
+                    <p class="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed font-light">
+                        We believe every artist deserves global reach without sacrificing their rights. Our mission is to provide simple, transparent music distribution while supporting artists with comprehensive marketing, playlist placement, and brand development services.
+                    </p>
+                </div>
+
+                <!-- Enhanced Story Section -->
+                <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                    <!-- Image Side with Enhanced Effects and Mobile Flip -->
+                    <div class="fade-in-left">
+                        <!-- Mobile Flip Card -->
+                        <div class="flip-card-container lg:hidden" id="aboutFlipCard">
+                            <div class="flip-card">
+                                <!-- Front Side (Image) -->
+                                <div class="flip-card-front">
+                                    <div class="relative perspective-card">
+                                        <div class="perspective-card-inner">
+                                            <!-- Glowing Border -->
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            
+                                            <!-- Main Image -->
+                                            <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Artist performing on stage" 
+                                                     class="w-full h-96 object-cover">
+                                                
+                                                <!-- Overlay with Company Info and Tap Indicator -->
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <div class="flex items-center justify-between text-black">
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Founded</div>
+                                                                <div class="text-2xl font-bold text-black">2020</div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Artists</div>
+                                                                <div class="text-2xl font-bold text-black">35+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Back Side (Content) -->
+                                <div class="flip-card-back">
+                                    <div class="relative bg-gradient-to-br from-black/10 to-white rounded-3xl p-6 h-96 overflow-y-auto">
+                                        <div class="absolute top-4 right-4 bg-white/90 text-black px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                            Tap to flip back
+                                        </div>
+                                        
+                                        <div class="mt-10 space-y-4 pb-4">
+                                            <h3 class="text-xl font-bold text-black mb-3">Our Story</h3>
+                                            
+                                            <p class="text-base text-gray-700 leading-relaxed">
+                                                Founded on the principle that artists should keep 100% of their rights, VoicePawa is a digital music distribution platform that connects artists, labels, and brands to major streaming platforms worldwide.
+                                            </p>
+                                            
+                                            <p class="text-sm text-gray-600 leading-relaxed">
+                                                We specialize in simple, transparent distribution with no upfront submission payments. Beyond distribution, we offer playlist support, social media integration, PR services, and comprehensive brand management.
+                                            </p>
+                                            
+                                            <!-- Key Achievements -->
+                                            <div class="grid grid-cols-2 gap-3 pt-2">
+                                                <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-black/20">
+                                                    <div class="text-xl font-bold text-black mb-1">35+</div>
+                                                    <div class="text-xs text-gray-600">Artists Supported</div>
+                                                </div>
+                                                <div class="bg-white/80 backdrop-blur-sm p-4 rounded-xl border border-black500/20">
+                                                    <div class="text-xl font-bold text-black400 mb-1">1M+</div>
+                                                    <div class="text-xs text-gray-600">Streams Generated</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Version (No Flip) -->
+                        <div class="hidden lg:block relative perspective-card">
+                            <div class="perspective-card-inner">
+                                <!-- Glowing Border -->
+                                <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                
+                                <!-- Main Image -->
+                                <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Artist performing on stage" 
+                                         class="w-full h-96 object-cover hover:scale-105 transition-transform duration-700">
+                                    
+                                    <!-- Overlay with Company Info -->
+                                    <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6">
+                                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                            <div class="flex items-center justify-between text-black">
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Founded</div>
+                                                    <div class="text-2xl font-bold text-black">2020</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Artists</div>
+                                                    <div class="text-2xl font-bold text-black">35+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Side - Hidden on Mobile (content shown in flip card) -->
+                    <div class="hidden lg:block fade-in-right space-y-8">
+                        <!-- Main Story Card -->
+                        <div class="bg-white backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
+                            <h3 class="text-3xl font-bold text-black mb-6 neon-text">Our Story</h3>
+                            <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                                Founded on the principle that artists should keep 100% of their rights, VoicePawa is a digital music distribution platform that connects artists, labels, and brands to major streaming platforms worldwide.
+                            </p>
+                            <p class="text-lg text-gray-600 leading-relaxed">
+                                We specialize in simple, transparent distribution with no upfront submission payments. Beyond distribution, we offer playlist support, social media integration, PR services, and comprehensive brand management.
+                            </p>
+                        </div>
+                        
+                        <!-- Key Achievements -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-br from-black/10 to-transparent p-6 rounded-xl border border-black/20">
+                                <div class="text-2xl font-bold text-black mb-2">35+</div>
+                                <div class="text-sm text-gray-600">Artists Supported</div>
+                            </div>
+                            <div class="bg-gradient-to-br from-black500/10 to-transparent p-6 rounded-xl border border-black500/20">
+                                <div class="text-2xl font-bold text-black400 mb-2">1M+</div>
+                                <div class="text-sm text-gray-600">Streams Generated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Values Section -->
+                <div class="mb-20">
+                    <!-- Section Header -->
+                    <div class="text-center mb-16 fade-in-up">
+                        <div class="inline-flex items-center space-x-2 bg-black/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+                            <i data-lucide="heart" class="w-5 h-5 text-black"></i>
+                            <span class="text-sm text-black font-bold tracking-widest uppercase">Our Values</span>
+                        </div>
+                        
+                        <h3 class="hero-title text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">
+                            What We <span class="text-black">Stand For</span>
+                        </h3>
+                    </div>
+                    
+                    <!-- Values Grid -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Rights Retention -->
+                        <div class="scale-in">
+                            <!-- Mobile Flip Card -->
+                            <div class="flip-card-container md:hidden" id="rightsFlipCard">
+                                <div class="flip-card">
+                                    <!-- Front Side (Image) -->
+                                    <div class="flip-card-front">
+                                        <div class="relative">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden">
+                                                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Music production and rights" 
+                                                     class="w-full h-80 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <h4 class="text-xl font-bold text-black mb-2">100% Rights Retention</h4>
+                                                        <p class="text-sm text-gray-700">Your music, your rights</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Back Side (Content) -->
+                                    <div class="flip-card-back">
+                                        <div class="relative bg-gradient-to-br from-black/10 to-white rounded-3xl p-6 h-80 overflow-y-auto">
+                                            <div class="absolute top-4 right-4 bg-white/90 text-black px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                                Tap to flip back
+                                            </div>
+                                            <div class="mt-10 space-y-4">
+                                                <div class="w-16 h-16 bg-gradient-to-br from-black/20 to-black/10 rounded-2xl flex items-center justify-center mb-4">
+                                                    <i data-lucide="shield-check" class="w-8 h-8 text-black"></i>
+                                                </div>
+                                                <h4 class="text-xl font-bold text-black">100% Rights Retention</h4>
+                                                <p class="text-sm text-gray-700 leading-relaxed">
+                                                    Keep full ownership of your music with no upfront fees or hidden costs. Your music, your rights, always.
+                                                </p>
+                                                <div class="space-y-2 pt-2">
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black mr-2"></i>
+                                                        <span>No Upfront Fees</span>
+                                                    </div>
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black mr-2"></i>
+                                                        <span>Full Ownership</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Desktop Card -->
+                            <div class="hidden md:block perspective-card group">
+                                <div class="perspective-card-inner relative bg-white backdrop-blur-sm p-8 rounded-2xl border border-gray-200 hover:border-black/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative mb-6">
+                                        <div class="w-20 h-20 bg-gradient-to-br from-black/20 to-black/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 image-glow">
+                                            <i data-lucide="shield-check" class="w-10 h-10 text-black"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">100% Rights Retention</h4>
+                                    <p class="text-gray-600 leading-relaxed mb-6">
+                                        Keep full ownership of your music with no upfront fees or hidden costs. Your music, your rights, always.
+                                    </p>
+                                    
+                                    <div class="space-y-2">
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black mr-2"></i>
+                                            <span>No Upfront Fees</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black mr-2"></i>
+                                            <span>Full Ownership</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Global Reach -->
+                        <div class="scale-in" style="animation-delay: 0.1s;">
+                            <!-- Mobile Flip Card -->
+                            <div class="flip-card-container md:hidden" id="globalReachFlipCard">
+                                <div class="flip-card">
+                                    <!-- Front Side (Image) -->
+                                    <div class="flip-card-front">
+                                        <div class="relative">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden">
+                                                <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Global music streaming" 
+                                                     class="w-full h-80 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black500/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <h4 class="text-xl font-bold text-black mb-2">Global Reach</h4>
+                                                        <p class="text-sm text-gray-700">190+ Countries</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Back Side (Content) -->
+                                    <div class="flip-card-back">
+                                        <div class="relative bg-gradient-to-br from-black500/10 to-white rounded-3xl p-6 h-80 overflow-y-auto">
+                                            <div class="absolute top-4 right-4 bg-white/90 text-black500 px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                                Tap to flip back
+                                            </div>
+                                            <div class="mt-10 space-y-4">
+                                                <div class="w-16 h-16 bg-gradient-to-br from-black500/20 to-black500/10 rounded-2xl flex items-center justify-center mb-4">
+                                                    <i data-lucide="globe" class="w-8 h-8 text-black400"></i>
+                                                </div>
+                                                <h4 class="text-xl font-bold text-black">Global Reach</h4>
+                                                <p class="text-sm text-gray-700 leading-relaxed">
+                                                    VoicePawa has songs available on all platforms, including Audiomack, Spotify, Apple Music, and YouTube Music.
+                                                </p>
+                                                <div class="space-y-2 pt-2">
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                                        <span>25+ Platforms</span>
+                                                    </div>
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                                        <span>Worldwide Distribution</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Desktop Card -->
+                            <div class="hidden md:block perspective-card group">
+                                <div class="perspective-card-inner relative bg-white backdrop-blur-sm p-8 rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-black500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative mb-6">
+                                        <div class="w-20 h-20 bg-gradient-to-br from-black500/20 to-black500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 image-glow">
+                                            <i data-lucide="globe" class="w-10 h-10 text-black400"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="text-2xl font-bold text-black mb-4 group-hover:text-black400 transition-colors">Global Reach</h4>
+                                    <p class="text-gray-600 leading-relaxed mb-6">
+                                        VoicePawa has songs available on all platforms, including Audiomack, Spotify, Apple Music, and YouTube Music.
+                                    </p>
+                                    
+                                    <div class="space-y-2">
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                            <span>25+ Platforms</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                            <span>Worldwide Distribution</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comprehensive Support -->
+                        <div class="scale-in" style="animation-delay: 0.2s;">
+                            <!-- Mobile Flip Card -->
+                            <div class="flip-card-container md:hidden" id="supportFlipCard">
+                                <div class="flip-card">
+                                    <!-- Front Side (Image) -->
+                                    <div class="flip-card-front">
+                                        <div class="relative">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-emerald-500 to-black500 rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden">
+                                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Music artist support" 
+                                                     class="w-full h-80 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black500/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <h4 class="text-xl font-bold text-black mb-2">Comprehensive Support</h4>
+                                                        <p class="text-sm text-gray-700">Full service management</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Back Side (Content) -->
+                                    <div class="flip-card-back">
+                                        <div class="relative bg-gradient-to-br from-black500/10 to-white rounded-3xl p-6 h-80 overflow-y-auto">
+                                            <div class="absolute top-4 right-4 bg-white/90 text-black500 px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                                Tap to flip back
+                                            </div>
+                                            <div class="mt-10 space-y-4">
+                                                <div class="w-16 h-16 bg-gradient-to-br from-black500/20 to-black500/10 rounded-2xl flex items-center justify-center mb-4">
+                                                    <i data-lucide="trending-up" class="w-8 h-8 text-black400"></i>
+                                                </div>
+                                                <h4 class="text-xl font-bold text-black">Comprehensive Support</h4>
+                                                <p class="text-sm text-gray-700 leading-relaxed">
+                                                    Playlist placement, social media integration, PR services, and brand management included.
+                                                </p>
+                                                <div class="space-y-2 pt-2">
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                                        <span>Marketing Support</span>
+                                                    </div>
+                                                    <div class="flex items-center text-sm text-gray-600">
+                                                        <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                                        <span>Brand Management</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Desktop Card -->
+                            <div class="hidden md:block perspective-card group">
+                                <div class="perspective-card-inner relative bg-white backdrop-blur-sm p-8 rounded-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 overflow-hidden interactive-card shadow-lg">
+                                    <div class="absolute inset-0 bg-gradient-to-br from-black500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    
+                                    <div class="relative mb-6">
+                                        <div class="w-20 h-20 bg-gradient-to-br from-black500/20 to-black500/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 image-glow">
+                                            <i data-lucide="trending-up" class="w-10 h-10 text-black400"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <h4 class="text-2xl font-bold text-black mb-4 group-hover:text-black400 transition-colors">Comprehensive Support</h4>
+                                    <p class="text-gray-600 leading-relaxed mb-6">
+                                        Playlist placement, social media integration, PR services, and brand management included.
+                                    </p>
+                                    
+                                    <div class="space-y-2">
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                            <span>Marketing Support</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-lucide="check" class="w-4 h-4 text-black400 mr-2"></i>
+                                            <span>Brand Management</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Stats Section -->
+                <div class="relative">
+                    <!-- Background -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black500/5 to-black500/10 rounded-3xl blur-xl"></div>
+                    
+                    <!-- Content -->
+                    <div class="relative bg-white backdrop-blur-sm p-8 lg:p-12 rounded-3xl border border-gray-200 shadow-lg">
+                        <!-- Header -->
+                        <div class="text-center mb-12">
+                            <h3 class="text-3xl font-bold text-black mb-4">Our Impact in Numbers</h3>
+                            <p class="text-gray-600 max-w-2xl mx-auto">
+                                These numbers represent the trust artists place in us and the success we've achieved together.
+                            </p>
+                        </div>
+                        
+                        <!-- Stats - Horizontal Scrolling -->
+                        <div class="stats-marquee-container" style="width: 100%; overflow: hidden; position: relative; padding: 2rem 0;">
+                            <div class="stats-marquee" style="display: flex; gap: 4rem; animation: marquee-scroll 30s linear infinite; width: max-content;"><!-- First set --><div class="stat-item" style="flex-shrink: 0; text-align: center; min-width: 200px;"><div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play w-8 h-8 text-black"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></div><div class="text-4xl font-bold text-black mb-2">400K+</div><div class="text-gray-600 text-sm font-medium">Total Streams</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-8 h-8 text-black400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div><div class="text-4xl font-bold text-black400 mb-2">100+</div><div class="text-gray-600 text-sm font-medium">Collaborations</div></div><div class="stat-item"><div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-8 h-8 text-black"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div><div class="text-4xl font-bold text-black mb-2">35+</div><div class="text-gray-600 text-sm font-medium">Artists Managed</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="globe" class="lucide lucide-globe w-8 h-8 text-black400"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></div><div class="text-4xl font-bold text-black400 mb-2">190+</div><div class="text-gray-600 text-sm font-medium">Countries Reached</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="music" class="lucide lucide-music w-8 h-8 text-black400"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div><div class="text-4xl font-bold text-black400 mb-2">300+</div><div class="text-gray-600 text-sm font-medium">Tracks Released</div></div><!-- Duplicate for seamless loop --><div class="stat-item"><div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play w-8 h-8 text-black"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg></div><div class="text-4xl font-bold text-black mb-2">400K+</div><div class="text-gray-600 text-sm font-medium">Total Streams</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-8 h-8 text-black400"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div><div class="text-4xl font-bold text-black400 mb-2">100+</div><div class="text-gray-600 text-sm font-medium">Collaborations</div></div><div class="stat-item"><div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-8 h-8 text-black"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg></div><div class="text-4xl font-bold text-black mb-2">35+</div><div class="text-gray-600 text-sm font-medium">Artists Managed</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="globe" class="lucide lucide-globe w-8 h-8 text-black400"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></div><div class="text-4xl font-bold text-black400 mb-2">190+</div><div class="text-gray-600 text-sm font-medium">Countries Reached</div></div><div class="stat-item"><div class="w-16 h-16 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="music" class="lucide lucide-music w-8 h-8 text-black400"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div><div class="text-4xl font-bold text-black400 mb-2">300+</div><div class="text-gray-600 text-sm font-medium">Tracks Released</div></div></div>
+                        </div>
+                        
+                        <!-- CTA -->
+                        <div class="text-center mt-12">
+                            <a href="services.html" class="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-black to-black500 text-white font-bold rounded-full hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-black/50">
+                                <span>Join Our Success Story</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gradient-to-r from-white to-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold tracking-wider voicepawa-script"><span class="text-black voicepawa-text-voice">Voice</span><span class="text-black voicepawa-text-pawa">Pawa</span></h3>
+                    <p class="text-gray-600 text-sm leading-relaxed max-w-sm">
+                        Empowering the next generation of global artists through strategic management, premium production, and worldwide distribution.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="twitter" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://instagram.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="instagram" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://facebook.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="facebook" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Quick Links</h4>
+                    <nav class="space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Home</a>
+                        <a href="about.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">About Us</a>
+                        <a href="artists.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Artists</a>
+                        <a href="services.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Services</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="tel:0555984307" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 mr-3"></i>
+                            0555984307
+                        </a>
+                        <a href="mailto:voicepawa@gmail.com" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 mr-3"></i>
+                            voicepawa@gmail.com
+                        </a>
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <i data-lucide="globe" class="w-4 h-4 mr-3"></i>
+                            Global Operations
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">
+                    &copy; <span id="current-year"></span> VoicePawa. All rights reserved. | Follow us: @voicepawa
+                </p>
+                <div class="flex space-x-6 text-xs text-gray-500">
+                    <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-black transition-colors">Terms of Service</a>
+                    <a href="contact.html" class="hover:text-black transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Advanced Page Load Animation
+        const tl = gsap.timeline();
+        
+        tl.from('.hero-title', {
+            duration: 1.5,
+            y: 100,
+            opacity: 0,
+            ease: 'power4.out'
+        })
+        .from('.hero-title + div p', {
+            duration: 1.2,
+            y: 50,
+            opacity: 0,
+            ease: 'power3.out'
+        }, '-=0.8')
+        .from('nav', {
+            duration: 1,
+            y: -100,
+            opacity: 0,
+            ease: 'power3.out'
+        }, '-=1.2');
+
+        // Enhanced Fade Animations with 3D Effects
+        gsap.utils.toArray('.fade-in-up').forEach((element, index) => {
+            gsap.fromTo(element,
+                { 
+                    y: 80, 
+                    opacity: 0,
+                    rotationX: 45,
+                    transformOrigin: 'center bottom'
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    rotationX: 0,
+                    duration: 1.2,
+                    delay: index * 0.1,
+                    ease: 'power4.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        end: 'bottom 15%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-left').forEach((element, index) => {
+            gsap.fromTo(element,
+                { 
+                    x: -100, 
+                    opacity: 0,
+                    rotationY: -45,
+                    transformOrigin: 'right center'
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                    rotationY: 0,
+                    duration: 1.4,
+                    delay: index * 0.15,
+                    ease: 'power4.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-right').forEach((element, index) => {
+            gsap.fromTo(element,
+                { 
+                    x: 100, 
+                    opacity: 0,
+                    rotationY: 45,
+                    transformOrigin: 'left center'
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                    rotationY: 0,
+                    duration: 1.4,
+                    delay: index * 0.15,
+                    ease: 'power4.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // Enhanced Scale Animation with Rotation
+        gsap.utils.toArray('.scale-in').forEach((element, index) => {
+            gsap.fromTo(element,
+                { 
+                    scale: 0.6, 
+                    opacity: 0,
+                    rotation: -15,
+                    transformOrigin: 'center center'
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    rotation: 0,
+                    duration: 1.2,
+                    delay: index * 0.1,
+                    ease: 'elastic.out(1, 0.5)',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // 3D Card Hover Effects
+        document.querySelectorAll('.perspective-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 8;
+                const rotateY = (centerX - x) / 8;
+                
+                gsap.to(card.querySelector('.perspective-card-inner'), {
+                    duration: 0.3,
+                    rotationX: rotateX,
+                    rotationY: rotateY,
+                    transformPerspective: 1000,
+                    ease: 'power2.out'
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card.querySelector('.perspective-card-inner'), {
+                    duration: 0.5,
+                    rotationX: 0,
+                    rotationY: 0,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Interactive Card Effects
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    duration: 0.4,
+                    y: -20,
+                    scale: 1.02,
+                    boxShadow: '0 30px 60px rgba(251, 191, 36, 0.2)',
+                    ease: 'power2.out'
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    duration: 0.4,
+                    y: 0,
+                    scale: 1,
+                    boxShadow: '0 0 0 rgba(251, 191, 36, 0)',
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        duration: 1.5,
+                        scrollTo: target,
+                        ease: 'power3.inOut'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Animation
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const isHidden = mobileMenu.classList.contains('hidden');
+            
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                gsap.fromTo(mobileMenu, 
+                    { opacity: 0, y: -20 },
+                    { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
+                );
+            } else {
+                gsap.to(mobileMenu, {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.3,
+                    ease: 'power2.in',
+                    onComplete: () => {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            }
+        });
+
+        // Mobile Flip Card Functionality
+        const aboutFlipCard = document.getElementById('aboutFlipCard');
+        if (aboutFlipCard) {
+            aboutFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                
+                // Re-initialize Lucide icons after flip
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            // Prevent text selection during flip
+            aboutFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+        
+        // Rights Retention Flip Card
+        const rightsFlipCard = document.getElementById('rightsFlipCard');
+        if (rightsFlipCard) {
+            rightsFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            rightsFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+        
+        // Global Reach Flip Card
+        const globalReachFlipCard = document.getElementById('globalReachFlipCard');
+        if (globalReachFlipCard) {
+            globalReachFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            globalReachFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+        
+        // Comprehensive Support Flip Card
+        const supportFlipCard = document.getElementById('supportFlipCard');
+        if (supportFlipCard) {
+            supportFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            supportFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+

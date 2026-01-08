@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - VoicePawa | Comprehensive Music Distribution Services</title>
+    
+    <meta name="description" content="VoicePawa offers digital music distribution, playlist support, PR services, and brand management for modern artists.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="logo-styles.css" rel="stylesheet">
+    <link href="shablackstyles.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        
+        .hero-title {
+            font-family: 'Bebas Neue', 'Impact', 'Arial Black', sans-serif;
+        }
+        
+        .section-padding {
+            padding: 5rem 2rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .section-padding {
+                padding: 8rem 4rem;
+            }
+        }
+        
+        .nav-link.active {
+            color: black;
+            position: relative;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: black;
+            border-radius: 50%;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .interactive-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .interactive-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .interactive-card {
+                transition: none;
+            }
+            
+            .interactive-card:hover {
+                transform: none;
+            }
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        /* Advanced Animation Effects */
+        
+        /* Particle Background Animation */
+        .particle-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .particle-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(251, 191, 36, 0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(251, 191, 36, 0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.1), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(251, 191, 36, 0.1), transparent);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: particle-float 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-10px) translateX(10px); }
+            66% { transform: translateY(5px) translateX(-5px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+        
+        /* Neon Glow Effect */
+        .neon-glow {
+            position: relative;
+            text-shadow: 
+                0 0 5px rgba(251, 191, 36, 0.5),
+                0 0 10px rgba(251, 191, 36, 0.5),
+                0 0 15px rgba(251, 191, 36, 0.5),
+                0 0 20px rgba(251, 191, 36, 0.5);
+            animation: neon-flicker 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neon-flicker {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 5px rgba(251, 191, 36, 0.5),
+                    0 0 10px rgba(251, 191, 36, 0.5),
+                    0 0 15px rgba(251, 191, 36, 0.5),
+                    0 0 20px rgba(251, 191, 36, 0.5);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 2px rgba(251, 191, 36, 0.3),
+                    0 0 5px rgba(251, 191, 36, 0.3),
+                    0 0 8px rgba(251, 191, 36, 0.3),
+                    0 0 12px rgba(251, 191, 36, 0.3);
+            }
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid rgba(251, 191, 36, 0.75);
+            white-space: nowrap;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border- }
+            50% { border-color: rgba(251, 191, 36, 0.75); }
+        }
+        
+        /* Liquid Morphing */
+        .liquid-morph {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: liquid-morph 8s ease-in-out infinite;
+        }
+        
+        @keyframes liquid-morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
+            75% { border-radius: 60% 40% 60% 30% / 60% 30% 60% 70%; }
+        }
+        
+        /* Holographic Effect */
+        .holographic {
+            background: linear-gradient(45deg, 
+                rgba(251, 191, 36, 0.1) 0%,
+                rgba(147, 51, 234, 0.1) 25%,
+                rgba(59, 130, 246, 0.1) 50%,
+                rgba(16, 185, 129, 0.1) 75%,
+                rgba(251, 191, 36, 0.1) 100%);
+            background-size: 400% 400%;
+            animation: holographic-shift 4s ease infinite;
+        }
+        
+        @keyframes holographic-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Magnetic Hover Effect */
+        .magnetic {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .magnetic:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: brightness(1.1) saturate(1.2);
+        }
+        
+
+        
+        /* Wave Animation */
+        .wave {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wave::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            animation: wave-slide 2s infinite;
+        }
+        
+        @keyframes wave-slide {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Bounce In Animation */
+        .bounce-in {
+            animation: bounce-in 1s ease-out;
+        }
+        
+        @keyframes bounce-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05) rotate(2deg);
+            }
+            70% {
+                transform: scale(0.9) rotate(-1deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        /* Shake Animation */
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Zoom Pulse */
+        .zoom-pulse {
+            animation: zoom-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes zoom-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Slide Reveal */
+        .slide-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            transform: translateX(-100%);
+            animation: slide-reveal-anim 1.5s ease-out forwards;
+        }
+        
+        @keyframes slide-reveal-anim {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(0%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Breathing Animation */
+        .breathing {
+            animation: breathing 4s ease-in-out infinite;
+        }
+        
+        @keyframes breathing {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+        
+        /* Slide-in Animation */
+        .animate-slide-in {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slide-in-left 0.6s ease-out forwards;
+        }
+        
+        @keyframes slide-in-left {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Bounce In Animation for Icons */
+        .bounce-in {
+            animation: bounce-in-icon 1s ease-out;
+        }
+        
+        @keyframes bounce-in-icon {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) rotate(-10deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1) rotate(5deg);
+            }
+            70% {
+                transform: scale(0.9) rotate(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        /* Desktop Optimization */
+        @media (min-width: 1440px) {
+            .max-w-7xl {
+                max-width: 1400px;
+            }
+            
+            .section-padding {
+                padding: 10rem 6rem;
+            }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .section-padding {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 5rem;
+            }
+            
+            .interactive-card:hover {
+                transform: translateY(-10px);
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: rotateY(3deg) rotateX(3deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 4rem;
+                line-height: 1.1;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 1.125rem;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 2.5rem;
+            }
+            
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-cols-5 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .gap-12, .gap-16 {
+                gap: 2rem;
+            }
+            
+            .interactive-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .perspective-card:hover .perspective-card-inner {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+                line-height: 1.05;
+            }
+            
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 1.875rem;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+            
+            .grid-cols-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid-cols-5 {
+                grid-template-columns: 1fr;
+            }
+            
+            .px-8, .px-10, .px-12 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .py-8, .py-10, .py-12 {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1.5rem;
+            }
+            
+            .mb-16, .mb-20 {
+                margin-bottom: 2rem;
+            }
+            
+            /* Better touch targets for mobile */
+            button, a {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .gap-6 {
+                gap: 0.75rem;
+            }
+            
+            .gap-8, .gap-10 {
+                gap: 1rem;
+            }
+            
+            /* Mobile hero section adjustments */
+            .min-h-\[80vh\] {
+                min-height: auto;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            /* Reduce service card padding on mobile */
+            .grid-cols-2 .perspective-card-inner {
+                padding: 1rem;
+            }
+            
+            .grid-cols-2 .w-12 {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .grid-cols-2 .text-sm {
+                font-size: 0.8rem;
+            }
+            
+            /* Adjust stats spacing */
+            .space-x-8 > * + * {
+                margin-left: 1.5rem;
+            }
+            
+            .space-y-6 {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.75rem;
+                line-height: 1.1;
+            }
+            
+            .text-lg {
+                font-size: 0.9rem;
+            }
+            
+            .text-xl, .text-2xl {
+                font-size: 0.875rem;
+                line-height: 1.35;
+            }
+            
+            .grid-cols-5 {
+                grid-template-columns: 1fr;
+            }
+            
+            .px-4 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .px-6 {
+                padding-left: 0.875rem;
+                padding-right: 0.875rem;
+            }
+            
+            .py-4 {
+                padding-top: 0.625rem;
+                padding-bottom: 0.625rem;
+            }
+            
+            .mb-6 {
+                margin-bottom: 1rem;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1.25rem;
+            }
+            
+            .mb-12 {
+                margin-bottom: 1rem;
+            }
+            
+            .space-x-6 > * + * {
+                margin-left: 1rem;
+            }
+            
+            .space-x-8 > * + * {
+                margin-left: 1rem;
+            }
+            
+            /* Further reduce service card sizes */
+            .grid-cols-2 {
+                gap: 0.5rem;
+            }
+            
+            .grid-cols-2 .perspective-card-inner {
+                padding: 0.75rem;
+            }
+            
+            .grid-cols-2 .w-12 {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            .grid-cols-2 .mb-4 {
+                margin-bottom: 0.5rem;
+            }
+            
+            .grid-cols-2 .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            /* Compact stats on very small screens */
+            .text-center .font-bold {
+                ;
+            }
+            
+            .text-center div:last-child {
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* Flip Card Styles for Mobile */
+        .flip-card-container {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flip-card {
+            position: relative;
+            width: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card-container.flipped .flip-card {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front,
+        .flip-card-back {
+            width: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+        }
+        
+        /* Custom scrollbar for flip card content */
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: black;
+            border-radius: 10px;
+        }
+        
+        .flip-card-back .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+            background: #16a34a;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'vp-dark': '#ffffff',
+                        'black': 'black',
+                        'vp-secondary': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Header / Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-lg holographic">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="flex items-center group relative magnetic">
+                    <img src="voicepawa-logo.svg" alt="VoicePawa Logo" class="w-16 h-16 sm:w-20 sm:h-20 mr-2 sm:mr-3 transition-transform duration-300 group-hover:scale-110 voicepawa-logo">
+                    <div class="flex flex-col">
+                        <span class="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wider breathing voicepawa-script"><span class="text-black voicepawa-text-voice">Voice</span><span class="text-black voicepawa-text-pawa">Pawa</span></span>
+                        <span class="text-xs text-gray-600 uppercase tracking-widest hidden sm:block wave">Amplify Your Sound</span>
+                    </div>
+                </a>
+
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-center">
+                    <a href="index.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Home</a>
+                    <a href="about.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">About Us</a>
+                    <a href="artists.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Artists</a>
+                    <a href="services.html" class="nav-link active px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Services</a>
+                    <a href="contact.html" class="nav-link px-3 py-2 text-sm font-medium hover:text-black transition duration-300">Contact</a>
+                    <a href="upload.html" class="ml-4 px-4 py-2 bg-black hover:bg-black600 text-white text-sm font-semibold rounded-full transition duration-300">Upload Now</a>
+                </div>
+
+                <button id="mobile-menu-button" type="button" class="sm:hidden text-gray-600 hover:text-black focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Home</a>
+                <a href="about.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">About Us</a>
+                <a href="artists.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Artists</a>
+                <a href="services.html" class="nav-link active block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Services</a>
+                <a href="contact.html" class="nav-link block px-3 py-2 text-base font-medium text-black hover:bg-vp-secondary">Contact</a>
+                <a href="upload.html" class="block px-3 py-2 text-base font-medium bg-black text-black hover:bg-black600 rounded-lg mt-2">Upload Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Enhanced Hero Section -->
+        <section class="relative min-h-[80vh] flex items-center overflow-hidden particle-bg bg-white">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-white"></div>
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute top-20 left-20 w-72 h-72 bg-black rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+                <div class="absolute bottom-20 right-20 w-72 h-72 bg-black500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 2s;"></div>
+                <div class="absolute top-60 right-40 w-72 h-72 bg-black500 rounded-full mix-blend-multiply filter blur-xl animate-pulse" style="animation-delay: 4s;"></div>
+            </div>
+            
+            <!-- Floating Service Icons -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-20 left-10 image-float opacity-30">
+                    <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="cloud-upload" class="w-8 h-8 text-black"></i>
+                    </div>
+                </div>
+                <div class="absolute top-40 right-20 image-float opacity-20" style="animation-delay: 2s;">
+                    <div class="w-12 h-12 bg-black500/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="list-music" class="w-6 h-6 text-black400"></i>
+                    </div>
+                </div>
+                <div class="absolute bottom-40 left-20 image-float opacity-25" style="animation-delay: 4s;">
+                    <div class="w-14 h-14 bg-black500/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="megaphone" class="w-7 h-7 text-black400"></i>
+                    </div>
+                </div>
+                <div class="absolute top-60 right-10 image-float opacity-30" style="animation-delay: 6s;">
+                    <div class="w-10 h-10 bg-black500/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                        <i data-lucide="users" class="w-5 h-5 text-black400"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full py-4 sm:py-0">
+                <!-- Enhanced Title -->
+                <div class="mb-6 sm:mb-12">
+                    <h1 class="hero-title text-6xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-black mb-4 sm:mb-6 perspective-card leading-tight">
+                        <span class="perspective-card-inner block">
+                            Services for <br class="hidden sm:block">
+                            <span class="text-black neon-text">Modern Artists</span>
+                        </span>
+                    </h1>
+                    
+                    <!-- Animated Subtitle -->
+                    <div class="relative">
+                        <p class="text-base sm:text-xl md:text-2xl text-gray-700 font-light tracking-wide image-reveal-mask max-w-4xl mx-auto mb-4 sm:mb-8 px-2">
+                            Everything you need to distribute, promote, and monetize your music worldwide.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Service Categories Preview -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto mb-6 sm:mb-12 perspective-card">
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-black/20 hover:border-black/50 transition-all duration-300 group shadow-md">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black/20 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="cloud-upload" class="w-5 h-5 sm:w-6 sm:h-6 text-black"></i>
+                        </div>
+                        <div class="text-xs sm:text-sm font-semibold text-black">Distribution</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="list-music" class="w-5 h-5 sm:w-6 sm:h-6 text-black400"></i>
+                        </div>
+                        <div class="text-xs sm:text-sm font-semibold text-black">Playlists</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="megaphone" class="w-5 h-5 sm:w-6 sm:h-6 text-black400"></i>
+                        </div>
+                        <div class="text-xs sm:text-sm font-semibold text-black">Marketing</div>
+                    </div>
+                    
+                    <div class="perspective-card-inner bg-white backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-6 border border-black500/20 hover:border-black500/50 transition-all duration-300 group shadow-md">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-black500/20 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-lucide="users" class="w-5 h-5 sm:w-6 sm:h-6 text-black400"></i>
+                        </div>
+                        <div class="text-xs sm:text-sm font-semibold text-black">Management</div>
+                    </div>
+                </div>
+                
+                <!-- Enhanced CTA -->
+                <div class="space-y-4 sm:space-y-6">
+                    <a href="#services" class="inline-flex items-center space-x-2 sm:space-x-3 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-black via-black500 to-black bg-size-200 hover:bg-pos-100 text-white text-sm sm:text-base font-bold rounded-full transition-all duration-700 hover:scale-110 shadow-2xl hover:shadow-black/50 perspective-card">
+                        <div class="perspective-card-inner flex items-center space-x-2 sm:space-x-3">
+                            <span>Explore Our Services</span>
+                            <i data-lucide="arrow-down" class="w-4 h-4 sm:w-5 sm:h-5 animate-bounce"></i>
+                        </div>
+                    </a>
+                    
+                    <!-- Quick Stats -->
+                    <div class="flex justify-center space-x-4 sm:space-x-8 text-xs sm:text-sm text-gray-600">
+                        <div class="text-center">
+                            <div class="text-black font-bold text-sm sm:text-base">100%</div>
+                            <div class="text-xs sm:text-sm">Rights Retained</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-black400 font-bold text-sm sm:text-base">25+</div>
+                            <div class="text-xs sm:text-sm">Platforms</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-black400 font-bold text-sm sm:text-base">0</div>
+                            <div class="text-xs sm:text-sm">Upfront Fees</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Featured Services Section -->
+        <section id="services" class="section-padding relative overflow-hidden bg-white">
+            <!-- Background -->
+            <div class="absolute inset-0 bg-white"></div>
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(251, 191, 36, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251, 191, 36, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+                
+                <!-- Section Header -->
+                <div class="text-center fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-black/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+                        <i data-lucide="zap" class="w-5 h-5 text-black"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">Featured Services</span>
+                    </div>
+                    
+                    <h2 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black mb-8 perspective-card">
+                        <span class="perspective-card-inner block">
+                            Empowering Your <br class="hidden sm:block">
+                            <span class="text-black">Musical Journey</span>
+                        </span>
+                    </h2>
+                </div>
+                
+                <!-- Enhanced Artist Management -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Content Side - Hidden on Mobile (content shown in flip card) -->
+                    <div class="hidden lg:block order-2 lg:order-1 fade-in-left">
+                        <div class="bg-white backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
+                            <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 pulse-glow">
+                                <i data-lucide="user-check" class="w-8 h-8 text-black"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-black mb-6 neon-text">Artist Management</h3>
+                            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                Comprehensive career development and strategic planning tailored to your unique artistic vision.
+                            </p>
+                            <div class="space-y-4 stagger-item">
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                                        <i data-lucide="target" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Career Strategy & Planning</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                                        <i data-lucide="file-text" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Contract Negotiation</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                                        <i data-lucide="palette" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Brand Development</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 transition-colors">
+                                        <i data-lucide="calendar" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Tour & Event Booking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 fade-in-right">
+                        <!-- Mobile Flip Card -->
+                        <div class="flip-card-container lg:hidden" id="artistManagementFlipCard">
+                            <div class="flip-card">
+                                <!-- Front Side (Image) -->
+                                <div class="flip-card-front">
+                                    <div class="relative perspective-card">
+                                        <div class="perspective-card-inner">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Artist performing on stage" 
+                                                     class="w-full h-96 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <div class="flex items-center justify-between text-black">
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Success Rate</div>
+                                                                <div class="text-2xl font-bold text-black">95%</div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Artists Managed</div>
+                                                                <div class="text-2xl font-bold text-black">35+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Back Side (Content) -->
+                                <div class="flip-card-back">
+                                    <div class="relative bg-gradient-to-br from-black/10 to-white rounded-3xl p-6 h-96 overflow-y-auto">
+                                        <div class="absolute top-4 right-4 bg-white/90 text-black px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                            Tap to flip back
+                                        </div>
+                                        <div class="mt-10 space-y-4 pb-4">
+                                            <h4 class="text-xl font-bold text-black mb-3">Artist Management</h4>
+                                            
+                                            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                                                Comprehensive career development and strategic planning tailored to your unique artistic vision.
+                                            </p>
+                                            
+                                            <div class="space-y-3">
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="target" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Career Strategy</h5>
+                                                            <p class="text-xs text-gray-600">Long-term planning and goal setting</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="trending-up" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Marketing Campaigns</h5>
+                                                            <p class="text-xs text-gray-600">Strategic promotion and audience growth</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="palette" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Brand Development</h5>
+                                                            <p class="text-xs text-gray-600">Build your unique artist identity</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="calendar" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Tour & Event Booking</h5>
+                                                            <p class="text-xs text-gray-600">Live performance opportunities</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Version (No Flip) -->
+                        <div class="hidden lg:block relative perspective-card">
+                            <div class="perspective-card-inner">
+                                <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                    <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Artist performing on stage" 
+                                         class="w-full h-96 object-cover hover:scale-105 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6">
+                                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                            <div class="flex items-center justify-between text-black">
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Success Rate</div>
+                                                    <div class="text-2xl font-bold text-black">95%</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Artists Managed</div>
+                                                    <div class="text-2xl font-bold text-black">35+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Music Production -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-1 fade-in-left">
+                        <!-- Mobile Flip Card -->
+                        <div class="flip-card-container lg:hidden" id="musicProductionFlipCard">
+                            <div class="flip-card">
+                                <!-- Front Side (Image) -->
+                                <div class="flip-card-front">
+                                    <div class="relative perspective-card">
+                                        <div class="perspective-card-inner">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Professional recording studio" 
+                                                     class="w-full h-96 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black500/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <div class="flex items-center justify-between text-black">
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Studio Hours</div>
+                                                                <div class="text-2xl font-bold text-black400">24/7</div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Projects</div>
+                                                                <div class="text-2xl font-bold text-black">1000+</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Back Side (Content) -->
+                                <div class="flip-card-back">
+                                    <div class="relative bg-gradient-to-br from-black500/10 to-white rounded-3xl p-6 h-96 overflow-y-auto">
+                                        <div class="absolute top-4 right-4 bg-white/90 text-black500 px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                            Tap to flip back
+                                        </div>
+                                        <div class="mt-10 space-y-4 pb-4">
+                                            <h4 class="text-xl font-bold text-black mb-3">Music Production</h4>
+                                            
+                                            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                                                State-of-the-art production facilities and world-class engineers to bring your vision to life.
+                                            </p>
+                                            
+                                            <div class="space-y-3">
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black500/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="mic" class="w-5 h-5 text-black400 flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Professional Recording Studios</h5>
+                                                            <p class="text-xs text-gray-600">High-end equipment and acoustics</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black500/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="sliders" class="w-5 h-5 text-black400 flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Mixing & Mastering</h5>
+                                                            <p class="text-xs text-gray-600">Professional audio engineering</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black500/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="users" class="w-5 h-5 text-black400 flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Producer Collaboration</h5>
+                                                            <p class="text-xs text-gray-600">Work with experienced producers</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black500/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="headphones" class="w-5 h-5 text-black400 flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Sound Design</h5>
+                                                            <p class="text-xs text-gray-600">Custom audio creation and effects</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Version (No Flip) -->
+                        <div class="hidden lg:block relative perspective-card">
+                            <div class="perspective-card-inner">
+                                <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-3xl blur opacity-30 animate-pulse"></div>
+                                <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Professional recording studio" 
+                                         class="w-full h-96 object-cover hover:scale-105 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6">
+                                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                            <div class="flex items-center justify-between text-black">
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Studio Hours</div>
+                                                    <div class="text-2xl font-bold text-black400">24/7</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Projects</div>
+                                                    <div class="text-2xl font-bold text-black">1000+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Side - Hidden on Mobile (content shown in flip card) -->
+                    <div class="hidden lg:block order-2 fade-in-right">
+                        <div class="bg-white backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
+                            <div class="w-16 h-16 bg-black500/20 rounded-2xl flex items-center justify-center mb-6 pulse-glow">
+                                <i data-lucide="music" class="w-8 h-8 text-black400"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-black mb-6">Music Production</h3>
+                            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                State-of-the-art production facilities and world-class engineers to bring your vision to life.
+                            </p>
+                            <div class="space-y-4 stagger-item">
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black500/20 rounded-full flex items-center justify-center group-hover:bg-black500/30 transition-colors">
+                                        <i data-lucide="mic" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Professional Recording Studios</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black500/20 rounded-full flex items-center justify-center group-hover:bg-black500/30 transition-colors">
+                                        <i data-lucide="sliders" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Mixing & Mastering</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black500/20 rounded-full flex items-center justify-center group-hover:bg-black500/30 transition-colors">
+                                        <i data-lucide="users" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Producer Collaboration</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group">
+                                    <div class="w-8 h-8 bg-black500/20 rounded-full flex items-center justify-center group-hover:bg-black500/30 transition-colors">
+                                        <i data-lucide="headphones" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors">Sound Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                <span class="text-gray-700">Mixing & Mastering</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                <span class="text-gray-700">Producer Collaboration</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-black flex-shrink-0"></i>
+                                <span class="text-gray-700">Sound Design</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Global Distribution -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Content Side - Hidden on Mobile (content shown in flip card) -->
+                    <div class="hidden lg:block order-2 lg:order-1 fade-in-left">
+                        <div class="bg-white backdrop-blur-sm rounded-2xl p-8 border border-gray-200 shadow-lg">
+                            <div class="w-20 h-20 bg-gradient-to-br from-black/30 to-black500/30 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 pulse-glow">
+                                <i data-lucide="upload-cloud" class="w-10 h-10 text-black bounce-in"></i>
+                            </div>
+                            <h3 class="text-3xl md:text-4xl font-bold text-black mb-6">Global Distribution</h3>
+                            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                Get your music on every major platform worldwide with comprehensive royalty management.
+                            </p>
+                            <div class="space-y-4 stagger-item">
+                                <div class="flex items-center space-x-4 group animate-slide-in" style="animation-delay: 0.1s;">
+                                    <div class="w-10 h-10 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 group-hover:scale-110 transition-all duration-300">
+                                        <i data-lucide="check" class="w-5 h-5 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors font-medium">Spotify, Apple Music, Amazon</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group animate-slide-in" style="animation-delay: 0.2s;">
+                                    <div class="w-10 h-10 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 group-hover:scale-110 transition-all duration-300">
+                                        <i data-lucide="check" class="w-5 h-5 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors font-medium">YouTube Music, Tidal, Deezer</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group animate-slide-in" style="animation-delay: 0.3s;">
+                                    <div class="w-10 h-10 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 group-hover:scale-110 transition-all duration-300">
+                                        <i data-lucide="check" class="w-5 h-5 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors font-medium">Royalty Collection & Reporting</span>
+                                </div>
+                                <div class="flex items-center space-x-4 group animate-slide-in" style="animation-delay: 0.4s;">
+                                    <div class="w-10 h-10 bg-black/20 rounded-full flex items-center justify-center group-hover:bg-black/30 group-hover:scale-110 transition-all duration-300">
+                                        <i data-lucide="check" class="w-5 h-5 text-black"></i>
+                                    </div>
+                                    <span class="text-gray-700 group-hover:text-black transition-colors font-medium">International Markets</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 fade-in-right">
+                        <!-- Mobile Flip Card -->
+                        <div class="flip-card-container lg:hidden" id="globalDistributionFlipCard">
+                            <div class="flip-card">
+                                <!-- Front Side (Image) -->
+                                <div class="flip-card-front">
+                                    <div class="relative perspective-card">
+                                        <div class="perspective-card-inner">
+                                            <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                            <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                                <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                                     alt="Digital music distribution" 
+                                                     class="w-full h-96 object-cover">
+                                                <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                                <div class="absolute top-4 right-4 bg-black/90 text-white px-3 py-1 rounded-full text-xs font-semibold animate-pulse">
+                                                    Tap to flip
+                                                </div>
+                                                <div class="absolute bottom-6 left-6 right-6">
+                                                    <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                                        <div class="flex items-center justify-between text-black">
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Platforms</div>
+                                                                <div class="text-2xl font-bold text-black">25+</div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="text-sm text-gray-700">Global Reach</div>
+                                                                <div class="text-2xl font-bold text-black">100%</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Back Side (Content) -->
+                                <div class="flip-card-back">
+                                    <div class="relative bg-gradient-to-br from-black/10 to-white rounded-3xl p-6 h-96 overflow-y-auto">
+                                        <div class="absolute top-4 right-4 bg-white/90 text-black px-3 py-1 rounded-full text-xs font-semibold z-10">
+                                            Tap to flip back
+                                        </div>
+                                        <div class="mt-10 space-y-4 pb-4">
+                                            <h4 class="text-xl font-bold text-black mb-3">Global Distribution</h4>
+                                            
+                                            <p class="text-sm text-gray-700 leading-relaxed mb-4">
+                                                Get your music on every major platform worldwide with comprehensive royalty management.
+                                            </p>
+                                            
+                                            <div class="space-y-3">
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Major Streaming Services</h5>
+                                                            <p class="text-xs text-gray-600">Spotify, Apple Music, Amazon Music</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Additional Platforms</h5>
+                                                            <p class="text-xs text-gray-600">YouTube Music, Tidal, Deezer</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">Royalty Management</h5>
+                                                            <p class="text-xs text-gray-600">Collection & detailed reporting</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-white/80 p-3 rounded-lg border border-black/20">
+                                                    <div class="flex items-start space-x-3">
+                                                        <i data-lucide="check" class="w-5 h-5 text-black flex-shrink-0 mt-0.5"></i>
+                                                        <div>
+                                                            <h5 class="text-sm font-bold text-black mb-1">International Markets</h5>
+                                                            <p class="text-xs text-gray-600">Worldwide distribution coverage</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Desktop Version (No Flip) -->
+                        <div class="hidden lg:block relative perspective-card">
+                            <div class="perspective-card-inner">
+                                <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 animate-pulse"></div>
+                                <div class="relative bg-white rounded-3xl overflow-hidden image-glow">
+                                    <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                         alt="Digital music distribution" 
+                                         class="w-full h-96 object-cover hover:scale-105 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent"></div>
+                                    <div class="absolute bottom-6 left-6 right-6">
+                                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                                            <div class="flex items-center justify-between text-black">
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Platforms</div>
+                                                    <div class="text-2xl font-bold text-black">25+</div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-sm text-gray-700">Global Reach</div>
+                                                    <div class="text-2xl font-bold text-black">100%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section-padding bg-white relative overflow-hidden">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-sm text-black font-bold tracking-widest uppercase mb-4">What We Offer</h2>
+                    <div class="w-24 h-1 bg-black mx-auto"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500 magnetic wave">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors liquid-morph zoom-pulse">
+                            <i data-lucide="cloud-upload" class="w-8 h-8 text-black bounce-in"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors slide-reveal">Digital Distribution</h3>
+                        <p class="text-gray-600 leading-relaxed breathing">
+                            Get your music on Spotify, Apple Music, YouTube Music, and all major streaming platforms. Keep 100% of your rights with no upfront fees.
+                        </p>
+                    </div>
+                    
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500 holographic magnetic" style="animation-delay: 0.1s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors liquid-morph breathing">
+                            <i data-lucide="list-music" class="w-8 h-8 text-black shake"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors neon-glow">Playlist & Social Media</h3>
+                        <p class="text-gray-600 leading-relaxed zoom-pulse">
+                            Get your music placed on playlists and shared on Instagram, TikTok, and Snapchat. Smart pre-save links and royalty splits included.
+                        </p>
+                    </div>
+
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500 wave magnetic" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors zoom-pulse liquid-morph">
+                            <i data-lucide="megaphone" class="w-8 h-8 text-black bounce-in"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black400 transition-colors">PR & Brand Management</h3>
+                        <p class="text-gray-600 leading-relaxed breathing">
+                            Professional public relations, marketing campaigns, and brand management to build your reach, audience, and monetize content worldwide.
+                        </p>
+                    </div>
+
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500 holographic magnetic" style="animation-delay: 0.3s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors breathing liquid-morph">
+                            <i data-lucide="users" class="w-8 h-8 text-black shake"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors neon-glow">Artist Development</h3>
+                        <p class="text-gray-600 leading-relaxed zoom-pulse">
+                            Nurturing talent from underground to established. Educational initiatives, writing camps, and industry support to develop your career.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Service Packages Section -->
+        <section class="section-padding bg-white relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-black to-black500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+                <div class="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-black500 to-black500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Enhanced Section Header -->
+                <div class="text-center mb-20 fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-black/10 to-black500/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-black/20">
+                        <i data-lucide="package" class="w-5 h-5 text-black animate-pulse"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">Service Packages</span>
+                        <i data-lucide="package" class="w-5 h-5 text-black animate-pulse" style="animation-delay: 0.5s;"></i>
+                    </div>
+                    
+                    <h2 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black mb-8">
+                        <span class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text">Choose Your</span>
+                        <br>
+                        <span class="bg-gradient-to-r from-black via-black400 to-black bg-clip-text text-transparent">Perfect Plan</span>
+                    </h2>
+                    
+                    <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+                        Tailored solutions for every stage of your musical journey, from emerging artists to established professionals.
+                    </p>
+                    
+                    <div class="w-32 h-1 bg-gradient-to-r from-transparent via-black to-transparent mx-auto"></div>
+                </div>
+
+                <!-- Enhanced Pricing Cards Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+                    <!-- Starter Package -->
+                    <div class="scale-in interactive-card group relative">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <div class="relative bg-white backdrop-blur-sm p-10 rounded-3xl shadow-2xl border border-gray-200 hover:border-gray-400/50 transition-all duration-500 h-full">
+                            <!-- Package Header -->
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-gray-200/50 to-gray-300/50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="music" class="w-8 h-8 text-gray-500"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold text-black mb-2">Starter</h4>
+                                <div class="flex items-baseline justify-center mb-2">
+                                    <span class="text-5xl font-black text-black">¢150</span>
+                                    <span class="text-gray-600 ml-2">/project</span>
+                                </div>
+                                <p class="text-gray-600">Perfect for emerging artists</p>
+                            </div>
+                            
+                            <!-- Features List -->
+                            <ul class="space-y-4 mb-8 flex-grow">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Digital distribution to all major platforms</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Basic playlist submission</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Social media promotion</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Monthly analytics reports</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Email support</span>
+                                </li>
+                            </ul>
+                            
+                            <!-- CTA Button -->
+                            <button class="w-full bg-gradient-to-r from-gray-200 to-gray-300 hover:from-black hover:to-black text-black font-semibold py-4 px-6 rounded-2xl transition-all duration-300 group-hover:scale-105 magnetic">
+                                Get Started
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Professional Package (Featured) -->
+                    <div class="scale-in interactive-card group relative transform lg:scale-110" style="animation-delay: 0.1s;">
+                        <!-- Popular Badge -->
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 z-10">
+                            <div class="bg-gradient-to-r from-black to-black500 text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg">
+                                <i data-lucide="star" class="w-4 h-4 inline mr-2"></i>
+                                Most Popular
+                            </div>
+                        </div>
+                        
+                        <!-- Glowing Border -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-black via-black500 to-black rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-700 animate-pulse"></div>
+                        
+                        <div class="relative bg-gradient-to-br from-black/10 to-white backdrop-blur-sm p-10 rounded-3xl shadow-2xl border-2 border-black/50 hover:border-black transition-all duration-500 h-full">
+                            <!-- Package Header -->
+                            <div class="text-center mb-8 pt-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-black/30 to-black500/30 rounded-2xl flex items-center justify-center mx-auto mb-4 pulse-glow">
+                                    <i data-lucide="trending-up" class="w-8 h-8 text-black"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold text-black mb-2">Professional</h4>
+                                <div class="flex items-baseline justify-center mb-2">
+                                    <span class="text-5xl font-black text-black">¢300</span>
+                                    <span class="text-gray-600 ml-2">/project</span>
+                                </div>
+                                <p class="text-gray-700">For serious artists ready to scale</p>
+                            </div>
+                            
+                            <!-- Features List -->
+                            <ul class="space-y-4 mb-8 flex-grow">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>Everything in Starter</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>Premium playlist placements</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>PR & media outreach</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>Brand management consultation</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>Advanced analytics & insights</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black"></i>
+                                    </div>
+                                    <span>Priority support</span>
+                                </li>
+                            </ul>
+                            
+                            <!-- CTA Button -->
+                            <button class="w-full bg-gradient-to-r from-black to-black500 hover:from-black500 hover:to-black text-black font-bold py-4 px-6 rounded-2xl transition-all duration-300 group-hover:scale-105 shadow-lg hover:shadow-black/50 magnetic">
+                                Choose Professional
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Package -->
+                    <div class="scale-in interactive-card group relative" style="animation-delay: 0.2s;">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-black500 via-black500 to-black500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <div class="relative bg-white backdrop-blur-sm p-10 rounded-3xl shadow-2xl border border-gray-200 hover:border-black500/50 transition-all duration-500 h-full">
+                            <!-- Package Header -->
+                            <div class="text-center mb-8">
+                                <div class="w-16 h-16 bg-gradient-to-br from-black500/30 to-black500/30 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <i data-lucide="building" class="w-8 h-8 text-black400"></i>
+                                </div>
+                                <h4 class="text-2xl font-bold text-black mb-2">Enterprise</h4>
+                                <div class="flex items-baseline justify-center mb-2">
+                                    <span class="text-5xl font-black bg-gradient-to-r from-black400 to-black400 bg-clip-text text-transparent">Custom</span>
+                                </div>
+                                <p class="text-gray-600">Tailored solutions for labels & agencies</p>
+                            </div>
+                            
+                            <!-- Features List -->
+                            <ul class="space-y-4 mb-8 flex-grow">
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Everything in Professional</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Multi-artist management</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Custom marketing campaigns</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">Dedicated account manager</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">White-label solutions</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-6 h-6 bg-black500/20 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4 text-black400"></i>
+                                    </div>
+                                    <span class="text-gray-700">24/7 premium support</span>
+                                </li>
+                            </ul>
+                            
+                            <!-- CTA Button -->
+                            <button class="w-full bg-gradient-to-r from-black600 to-black600 hover:from-black500 hover:to-black500 text-black font-semibold py-4 px-6 rounded-2xl transition-all duration-300 group-hover:scale-105 magnetic">
+                                Contact Sales
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section-padding bg-gradient-to-b from-white via-gray-900 to-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 30% 30%, rgba(251, 191, 36, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-up">
+                    <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-black/10 to-black500/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-black/20">
+                        <i data-lucide="quote" class="w-5 h-5 text-black animate-pulse"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">What Artists Say</span>
+                    </div>
+                    
+                    <h2 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black mb-6">
+                        <span class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">Success</span>
+                        <span class="bg-gradient-to-r from-black via-black400 to-black bg-clip-text text-transparent"> Stories</span>
+                    </h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="scale-in interactive-card group relative" style="animation-delay: 0.1s;">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-black to-black500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <div class="relative bg-white backdrop-blur-sm p-8 rounded-3xl border border-gray-200 hover:border-black/50 transition-all duration-500 shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-black/30 to-black500/30 rounded-full flex items-center justify-center mr-4">
+                                    <i data-lucide="user" class="w-6 h-6 text-black"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-black">Nii Kpakpo Pappoe</div>
+                                    <div class="text-sm text-gray-600">Independent Artist</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                "VoicePawa transformed my music career. Their distribution network got my tracks on every major platform, and their playlist placements increased my streams by 300%."
+                            </p>
+                            <div class="flex text-black400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="scale-in interactive-card group relative" style="animation-delay: 0.2s;">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-black500 to-black500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <div class="relative bg-white backdrop-blur-sm p-8 rounded-3xl border border-gray-200 hover:border-black500/50 transition-all duration-500 shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-black500/30 to-black500/30 rounded-full flex items-center justify-center mr-4">
+                                    <i data-lucide="user" class="w-6 h-6 text-black400"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-black">Kwame Amankwah Nimo</div>
+                                    <div class="text-sm text-gray-600">Hip-Hop Producer</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                "The professional package gave me everything I needed. From PR campaigns to brand management, VoicePawa helped me build a sustainable music business."
+                            </p>
+                            <div class="flex text-black400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="scale-in interactive-card group relative" style="animation-delay: 0.3s;">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-black500 to-black500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-700"></div>
+                        <div class="relative bg-white backdrop-blur-sm p-8 rounded-3xl border border-gray-200 hover:border-black500/50 transition-all duration-500 shadow-lg">
+                            <div class="flex items-center mb-6">
+                                <div class="w-12 h-12 bg-gradient-to-br from-black500/30 to-black500/30 rounded-full flex items-center justify-center mr-4">
+                                    <i data-lucide="user" class="w-6 h-6 text-black400"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-black">Ebenezer Bortier</div>
+                                    <div class="text-sm text-gray-600">Independent Label</div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed mb-4">
+                                "As a label, we needed enterprise solutions. VoicePawa's multi-artist management and custom campaigns have been game-changing for our roster."
+                            </p>
+                            <div class="flex text-black400">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Services Section -->
+        <section class="section-padding bg-white relative overflow-hidden">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-black/10 to-black500/10 backdrop-blur-sm rounded-full px-8 py-4 mb-8 border border-black/20">
+                        <i data-lucide="plus" class="w-5 h-5 text-black animate-pulse"></i>
+                        <span class="text-sm text-black font-bold tracking-widest uppercase">Additional Services</span>
+                    </div>
+                    <div class="w-32 h-1 bg-gradient-to-r from-transparent via-black to-transparent mx-auto"></div>
+                </div>
+                
+                <!-- Additional Services Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Digital Marketing -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-black hover:border-black/80 transition-all duration-500 particle-bg magnetic">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors liquid-morph zoom-pulse">
+                            <i data-lucide="megaphone" class="w-8 h-8 text-black bounce-in"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors neon-glow">Digital Marketing</h3>
+                        <p class="text-gray-600 leading-relaxed breathing">
+                            Strategic social media campaigns and PR to maximize your reach.
+                        </p>
+                    </div>
+
+                    <!-- Music Videos -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500" style="animation-delay: 0.1s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors">
+                            <i data-lucide="video" class="w-8 h-8 text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">Music Videos</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Professional video production from concept to final edit.
+                        </p>
+                    </div>
+
+                    <!-- Radio Promotion -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500" style="animation-delay: 0.2s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors">
+                            <i data-lucide="radio" class="w-8 h-8 text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">Radio Promotion</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Get your tracks on radio stations worldwide.
+                        </p>
+                    </div>
+
+                    <!-- Fan Engagement -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500" style="animation-delay: 0.3s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors">
+                            <i data-lucide="users" class="w-8 h-8 text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">Fan Engagement</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Build and maintain strong connections with your audience.
+                        </p>
+                    </div>
+
+                    <!-- Analytics & Insights -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500" style="animation-delay: 0.4s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors">
+                            <i data-lucide="trending-up" class="w-8 h-8 text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">Analytics & Insights</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Data-driven insights to optimize your music strategy.
+                        </p>
+                    </div>
+
+                    <!-- Rights Management -->
+                    <div class="scale-in interactive-card bg-white p-8 rounded-2xl shadow-2xl group border border-gray-200 hover:border-black/50 transition-all duration-500" style="animation-delay: 0.5s;">
+                        <div class="w-16 h-16 bg-black/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-black/30 transition-colors">
+                            <i data-lucide="shield-check" class="w-8 h-8 text-black"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-black mb-4 group-hover:text-black transition-colors">Rights Management</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Protect and monetize your intellectual property.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+
+        <!-- Final Call-to-Action Section -->
+        <section class="section-padding bg-gradient-to-br from-black via-black500 to-black relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-20">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+            </div>
+            
+            <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="fade-in-up">
+                    <h2 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-black mb-8">
+                        Ready to Amplify <br class="hidden sm:block">
+                        <span class="text-black">Your Sound?</span>
+                    </h2>
+                    
+                    <p class="text-xl text-black/90 max-w-2xl mx-auto leading-relaxed mb-12">
+                        Join thousands of artists who trust VoicePawa to distribute, promote, and monetize their music worldwide. Your journey to global success starts here.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                        <a href="upload.html" class="group inline-flex items-center space-x-3 px-10 py-5 bg-white hover:bg-gray-50 text-black font-bold rounded-full transition-all duration-300 hover:scale-110 shadow-2xl magnetic">
+                            <span class="text-lg">Start Your Journey</span>
+                            <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300"></i>
+                        </a>
+                        
+                        <a href="contact.html" class="group inline-flex items-center space-x-3 px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-black text-black font-semibold rounded-full transition-all duration-300 hover:scale-105">
+                            <span>Get Free Consultation</span>
+                            <i data-lucide="phone" class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Indicators -->
+                    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-3xl font-black text-black mb-2">35+</div>
+                            <div class="text-sm text-black/80">Artists Served</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-black mb-2">25+</div>
+                            <div class="text-sm text-black/80">Platforms</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-black mb-2">50M+</div>
+                            <div class="text-sm text-black/80">Streams Generated</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-black mb-2">24/7</div>
+                            <div class="text-sm text-black/80">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gradient-to-r from-white to-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Brand Section -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold tracking-wider voicepawa-script"><span class="text-black voicepawa-text-voice">Voice</span><span class="text-black voicepawa-text-pawa">Pawa</span></h3>
+                    <p class="text-gray-600 text-sm leading-relaxed max-w-sm">
+                        Empowering the next generation of global artists through strategic management, premium production, and worldwide distribution.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="twitter" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://instagram.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="instagram" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                        <a href="https://facebook.com/voicepawa" target="_blank" rel="noopener noreferrer" 
+                           class="w-10 h-10 bg-gray-100 hover:bg-black rounded-full flex items-center justify-center transition-colors duration-300">
+                            <i data-lucide="facebook" class="w-4 h-4 text-gray-600 hover:text-black"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Quick Links</h4>
+                    <nav class="space-y-2">
+                        <a href="index.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Home</a>
+                        <a href="about.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">About Us</a>
+                        <a href="artists.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Artists</a>
+                        <a href="services.html" class="block text-gray-600 hover:text-black transition-colors duration-300 text-sm">Services</a>
+                    </nav>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h4 class="text-lg font-semibold text-black">Contact</h4>
+                    <div class="space-y-3">
+                        <a href="tel:0555984307" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="phone" class="w-4 h-4 mr-3"></i>
+                            0555984307
+                        </a>
+                        <a href="mailto:voicepawa@gmail.com" class="flex items-center text-gray-600 hover:text-black transition-colors duration-300 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 mr-3"></i>
+                            voicepawa@gmail.com
+                        </a>
+                        <div class="flex items-center text-gray-600 text-sm">
+                            <i data-lucide="globe" class="w-4 h-4 mr-3"></i>
+                            Global Operations
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="border-t border-gray-200 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">
+                    &copy; <span id="current-year"></span> VoicePawa. All rights reserved. | Follow us: @voicepawa
+                </p>
+                <div class="flex space-x-6 text-xs text-gray-500">
+                    <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-black transition-colors">Terms of Service</a>
+                    <a href="contact.html" class="hover:text-black transition-colors">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.scale-in').forEach(element => {
+            gsap.fromTo(element,
+                { scale: 0.8, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: 'back.out(1.7)',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-left').forEach(element => {
+            gsap.fromTo(element,
+                { x: -60, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        gsap.utils.toArray('.fade-in-right').forEach(element => {
+            gsap.fromTo(element,
+                { x: 60, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Advanced Interactive Animations
+        
+        // Cursor Trail Effect
+        let mouseX = 0, mouseY = 0;
+        let trailX = 0, trailY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function animateTrail() {
+            trailX += (mouseX - trailX) * 0.1;
+            trailY += (mouseY - trailY) * 0.1;
+            
+            const trail = document.querySelector('.cursor-trail');
+            if (trail) {
+                trail.style.left = trailX + 'px';
+                trail.style.top = trailY + 'px';
+            }
+            
+            requestAnimationFrame(animateTrail);
+        }
+        
+        // Create cursor trail element
+        const cursorTrail = document.createElement('div');
+        cursorTrail.className = 'cursor-trail fixed w-4 h-4 bg-black rounded-full pointer-events-none z-50 opacity-50 mix-blend-difference';
+        document.body.appendChild(cursorTrail);
+        animateTrail();
+        
+        // Card Tilt Effect
+        document.querySelectorAll('.interactive-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                gsap.to(card, {
+                    duration: 0.3,
+                    rotationX: rotateX,
+                    rotationY: rotateY,
+                    transformPerspective: 1000,
+                    ease: 'power2.out'
+                });
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    duration: 0.5,
+                    rotationX: 0,
+                    rotationY: 0,
+                    ease: 'power2.out'
+                });
+            });
+        });
+        
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic').forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(element, {
+                    duration: 0.3,
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    ease: 'power2.out'
+                });
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                gsap.to(element, {
+                    duration: 0.5,
+                    x: 0,
+                    y: 0,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+        
+
+        
+        // Parallax Scrolling Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-bg');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    
+                    // Add bounce animation to icons
+                    if (element.classList.contains('bounce-in')) {
+                        element.style.animation = 'bounce-in 1s ease-out';
+                    }
+                    
+                    // Add shake animation
+                    if (element.classList.contains('shake')) {
+                        setTimeout(() => {
+                            element.style.animation = 'shake 0.5s ease-in-out';
+                        }, Math.random() * 1000);
+                    }
+                    
+                    // Add glow effect
+                    if (element.classList.contains('neon-glow')) {
+                        element.style.animation = 'neon-flicker 2s ease-in-out infinite alternate';
+                    }
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.bounce-in, .shake, .neon-glow, .zoom-pulse, .breathing').forEach(el => {
+            animationObserver.observe(el);
+        });
+        
+        // Dynamic Background Particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'fixed w-1 h-1 bg-black rounded-full pointer-events-none z-10 opacity-30';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(particle);
+            
+            gsap.to(particle, {
+                duration: Math.random() * 3 + 2,
+                y: -window.innerHeight - 100,
+                x: (Math.random() - 0.5) * 200,
+                rotation: Math.random() * 360,
+                opacity: 0,
+                ease: 'none',
+                onComplete: () => {
+                    particle.remove();
+                }
+            });
+        }
+        
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Mobile Flip Card Functionality
+        const artistManagementFlipCard = document.getElementById('artistManagementFlipCard');
+        if (artistManagementFlipCard) {
+            artistManagementFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            artistManagementFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        const musicProductionFlipCard = document.getElementById('musicProductionFlipCard');
+        if (musicProductionFlipCard) {
+            musicProductionFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            musicProductionFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+        const globalDistributionFlipCard = document.getElementById('globalDistributionFlipCard');
+        if (globalDistributionFlipCard) {
+            globalDistributionFlipCard.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                setTimeout(() => {
+                    lucide.createIcons();
+                }, 400);
+            });
+            
+            globalDistributionFlipCard.addEventListener('selectstart', function(e) {
+                if (this.classList.contains('flipped') || e.target.closest('.flip-card-front')) {
+                    e.preventDefault();
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
+
+

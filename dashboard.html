@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - VoicePawa | Your Music, Your Stage</title>
+    
+    <meta name="description" content="VoicePawa dashboard - Upload and manage your music distribution">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="logo-styles.css" rel="stylesheet">
+    <link href="shablackstyles.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+            color: #1f2937;
+        }
+        
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, black, black);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.25rem;
+        }
+        
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1f2937;
+            letter-spacing: -0.02em;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: #1f2937;
+        }
+        
+        .nav-link.active {
+            color: black;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: black;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .btn-upload {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, black, black);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-upload::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-upload:hover {
+            background: linear-gradient(135deg, black, black);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+        
+        .btn-upload:hover::before {
+            left: 100%;
+        }
+        
+        .btn-upload:active {
+            transform: translateY(0);
+        }
+        
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .welcome-section {
+            margin-bottom: 3rem;
+        }
+        
+        .welcome-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .welcome-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+        
+        .upload-section {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-radius: 1.5rem;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-section:hover {
+            box-shadow: 0 8px 30px rgba(251, 191, 36, 0.15);
+            border-color: black;
+        }
+        
+        .folder-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            color: black;
+        }
+        
+        .upload-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-description {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .upload-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-upload-single {
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, black, black);
+            color: white;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-upload-single::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-upload-single:hover {
+            background: linear-gradient(135deg, black, black);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+        }
+        
+        .btn-upload-single:hover::before {
+            left: 100%;
+        }
+        
+        .btn-upload-album {
+            padding: 0.875rem 2rem;
+            background: white;
+            color: #1f2937;
+            border: 2px solid #d1d5db;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-upload-album:hover {
+            border-color: black;
+            color: black;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+        
+        .utility-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 40;
+        }
+        
+        .utility-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .utility-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .utility-btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .utility-btn-help {
+            background: #000000;
+            color: white;
+            border-radius: 1.5rem;
+            width: auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .utility-btn-help span {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .utility-btn-ai {
+            background: linear-gradient(135deg, #8B5CF6, #6366F1);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .upload-title {
+                font-size: 1.5rem;
+            }
+            
+            .upload-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="voicepawa-logo.svg" alt="VoicePawa Logo" class="w-10 h-10 voicepawa-logo">
+            <div class="logo-text">VOICEPAWA</div>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#" class="nav-link active">
+                <i data-lucide="folder"></i>
+                <span>My Music</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i data-lucide="bar-chart-3"></i>
+                <span>Insights</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i data-lucide="coins"></i>
+                <span>Royalties</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i data-lucide="settings"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        
+        <div class="user-actions">
+            <button class="btn-upload" onclick="scrollToUpload()">
+                <i data-lucide="upload"></i>
+                <span>Upload music</span>
+            </button>
+            <div class="user-profile" id="userProfile">
+                <span id="userInitials">EQ</span>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-container">
+        <div class="welcome-section">
+            <h1 class="welcome-title">
+                <span id="userGreeting">Hey User</span>
+                <span>👋</span>
+            </h1>
+            <p class="welcome-subtitle">Here's what we have for you today.</p>
+        </div>
+        
+        <div class="upload-section">
+            <div class="folder-icon">
+                <i data-lucide="folder" style="width: 100%; height: 100%;"></i>
+            </div>
+            <h2 class="upload-title">Your Music, Your Stage. Share It with the World!</h2>
+            <p class="upload-description">
+                Upload your first track and take control of your music journey, sharing it with the world.
+            </p>
+            <div class="upload-buttons">
+                <button class="btn-upload-single" onclick="handleUploadSingle()">
+                    Upload single
+                </button>
+                <button class="btn-upload-album" onclick="handleUploadAlbum()">
+                    Upload album
+                </button>
+            </div>
+        </div>
+    </main>
+    
+    <div class="utility-buttons">
+        <button class="utility-btn utility-btn-whatsapp" title="WhatsApp Support" onclick="openWhatsApp()">
+            <i data-lucide="message-circle"></i>
+        </button>
+        <button class="utility-btn utility-btn-help" title="Help" onclick="openHelp()">
+            <i data-lucide="help-circle"></i>
+            <span>Help</span>
+        </button>
+        <button class="utility-btn utility-btn-ai" title="AI Assistant" onclick="openAI()">
+            <i data-lucide="brain"></i>
+        </button>
+    </div>
+    
+    <script>
+        lucide.createIcons();
+        
+        function getUserData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const firstName = urlParams.get('firstName') || localStorage.getItem('userFirstName') || 'User';
+            const lastName = urlParams.get('lastName') || localStorage.getItem('userLastName') || '';
+            
+            return {
+                firstName: firstName,
+                lastName: lastName,
+                email: urlParams.get('email') || localStorage.getItem('userEmail') || ''
+            };
+        }
+        
+        function initializeUser() {
+            const userData = getUserData();
+            const firstName = userData.firstName;
+            const lastName = userData.lastName;
+            
+            document.getElementById('userGreeting').textContent = `Hey ${firstName}`;
+            
+            const initials = (firstName.charAt(0) + (lastName ? lastName.charAt(0) : firstName.charAt(1))).toUpperCase();
+            document.getElementById('userInitials').textContent = initials;
+            
+            if (firstName !== 'User') {
+                localStorage.setItem('userFirstName', firstName);
+                if (lastName) localStorage.setItem('userLastName', lastName);
+            }
+        }
+        
+        function handleUploadSingle() {
+            showUploadModal('single');
+        }
+        
+        function handleUploadAlbum() {
+            showUploadModal('album');
+        }
+        
+        function showUploadModal(type) {
+            const modal = createUploadModal(type);
+            document.body.appendChild(modal);
+            
+            // Animate modal in
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+        
+        function createUploadModal(type) {
+            const modal = document.createElement('div');
+            modal.className = 'upload-modal';
+            modal.innerHTML = `
+                <div class="upload-modal-backdrop" onclick="closeUploadModal()"></div>
+                <div class="upload-modal-content">
+                    <div class="upload-modal-header">
+                        <h3>Upload ${type === 'single' ? 'Single Track' : 'Album'}</h3>
+                        <button onclick="closeUploadModal()" class="close-btn">&times;</button>
+                    </div>
+                    <div class="upload-modal-body">
+                        <div class="upload-zone" onclick="triggerFileInput('${type}')">
+                            <i data-lucide="upload-cloud" style="width: 48px; height: 48px; color: black; margin-bottom: 1rem;"></i>
+                            <p>Click to select ${type === 'single' ? 'your track' : 'your tracks'}</p>
+                            <p class="upload-hint">Supported formats: MP3, WAV, FLAC (Max 100MB per file)</p>
+                        </div>
+                        <input type="file" id="file-input-${type}" ${type === 'album' ? 'multiple' : ''} accept=".mp3,.wav,.flac" style="display: none;" onchange="handleFileSelect(event, '${type}')">
+                        
+                        <div class="upload-form" id="upload-form-${type}" style="display: none;">
+                            <div class="form-group">
+                                <label>Track Title</label>
+                                <input type="text" id="track-title-${type}" placeholder="Enter track title" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Artist Name</label>
+                                <input type="text" id="artist-name-${type}" placeholder="Enter artist name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Genre</label>
+                                <select id="genre-${type}" required>
+                                    <option value="">Select genre</option>
+                                    <option value="pop">Pop</option>
+                                    <option value="rock">Rock</option>
+                                    <option value="hip-hop">Hip Hop</option>
+                                    <option value="electronic">Electronic</option>
+                                    <option value="r&b">R&B</option>
+                                    <option value="country">Country</option>
+                                    <option value="jazz">Jazz</option>
+                                    <option value="classical">Classical</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Release Date</label>
+                                <input type="date" id="release-date-${type}" required>
+                            </div>
+                            <button onclick="submitUpload('${type}')" class="upload-submit-btn">
+                                Upload ${type === 'single' ? 'Single' : 'Album'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add modal styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .upload-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1000;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: all 0.3s ease;
+                }
+                
+                .upload-modal.show {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                
+                .upload-modal-backdrop {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.7);
+                    backdrop-filter: blur(4px);
+                }
+                
+                .upload-modal-content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    border-radius: 1rem;
+                    width: 90%;
+                    max-width: 500px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                }
+                
+                .upload-modal-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 1.5rem;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+                
+                .upload-modal-header h3 {
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: #1f2937;
+                }
+                
+                .close-btn {
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #6b7280;
+                    padding: 0.25rem;
+                }
+                
+                .upload-modal-body {
+                    padding: 1.5rem;
+                }
+                
+                .upload-zone {
+                    border: 2px dashed #d1d5db;
+                    border-radius: 0.5rem;
+                    padding: 3rem 2rem;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    margin-bottom: 1.5rem;
+                }
+                
+                .upload-zone:hover {
+                    border-color: black;
+                    background: #fef2f2;
+                }
+                
+                .upload-hint {
+                    font-size: 0.875rem;
+                    color: #6b7280;
+                    margin-top: 0.5rem;
+                }
+                
+                .form-group {
+                    margin-bottom: 1rem;
+                }
+                
+                .form-group label {
+                    display: block;
+                    font-size: 0.875rem;
+                    font-weight: 500;
+                    color: #1f2937;
+                    margin-bottom: 0.5rem;
+                }
+                
+                .form-group input,
+                .form-group select {
+                    width: 100%;
+                    padding: 0.75rem;
+                    border: 1px solid #d1d5db;
+                    border-radius: 0.375rem;
+                    font-size: 0.875rem;
+                }
+                
+                .upload-submit-btn {
+                    width: 100%;
+                    padding: 0.75rem;
+                    background: black;
+                    color: white;
+                    border: none;
+                    border-radius: 0.375rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background 0.2s;
+                }
+                
+                .upload-submit-btn:hover {
+                    background: black;
+                }
+            `;
+            
+            if (!document.getElementById('upload-modal-styles')) {
+                style.id = 'upload-modal-styles';
+                document.head.appendChild(style);
+            }
+            
+            return modal;
+        }
+        
+        function triggerFileInput(type) {
+            document.getElementById(`file-input-${type}`).click();
+        }
+        
+        function handleFileSelect(event, type) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                document.getElementById(`upload-form-${type}`).style.display = 'block';
+                
+                // Pre-fill artist name if available
+                const firstName = localStorage.getItem('userFirstName') || '';
+                const lastName = localStorage.getItem('userLastName') || '';
+                const artistName = `${firstName} ${lastName}`.trim();
+                if (artistName) {
+                    document.getElementById(`artist-name-${type}`).value = artistName;
+                }
+                
+                // Set default release date to today
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById(`release-date-${type}`).value = today;
+            }
+        }
+        
+        function submitUpload(type) {
+            const title = document.getElementById(`track-title-${type}`).value;
+            const artist = document.getElementById(`artist-name-${type}`).value;
+            const genre = document.getElementById(`genre-${type}`).value;
+            const releaseDate = document.getElementById(`release-date-${type}`).value;
+            
+            if (!title || !artist || !genre || !releaseDate) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate upload process
+            const btn = event.target;
+            btn.textContent = 'Uploading...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`${type === 'single' ? 'Single' : 'Album'} "${title}" by ${artist} uploaded successfully! We'll process it and notify you when it's live on streaming platforms.`);
+                closeUploadModal();
+            }, 2000);
+        }
+        
+        function closeUploadModal() {
+            const modal = document.querySelector('.upload-modal');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.remove();
+                }, 300);
+            }
+        }
+        
+        function scrollToUpload() {
+            document.querySelector('.upload-section').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function openWhatsApp() {
+            window.open('https://wa.me/0555984307', '_blank');
+        }
+        
+        function openHelp() {
+            alert('Need help? Contact us at voicepawa@gmail.com or call 0555984307');
+        }
+        
+        function openAI() {
+            alert('AI Assistant feature coming soon!');
+        }
+        
+        initializeUser();
+        setInterval(() => {
+            lucide.createIcons();
+        }, 1000);
+    </script>
+</body>
+</html>
+
+
+
